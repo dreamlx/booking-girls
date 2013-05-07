@@ -1,8 +1,20 @@
 Tzk3d::Application.routes.draw do
 
+  resources :girls
+
+
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'home#index'
+  
+  resources :girls do
+    resources :tasks, controller: :tasks 
+    
+    member do
+      put :leave
+      put :atwork
+    end
+  end
   
   resources :categories
 

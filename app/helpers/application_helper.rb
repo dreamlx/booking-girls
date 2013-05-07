@@ -22,17 +22,6 @@ module ApplicationHelper
   
   def get_head_title
     #产品-分类-网站名称
-    title = ""
-    title = "#{ @product.name }-" if @product
-    if @product and @product.category
-      title += t("category.#{ @product.category.name }")  
-    else
-      title += t("category.#{@category.name}")  if @category
-    end  
-                      
-    title += "-3d图纸库-3dtzk.com"  
-    
-    title = "3d图纸库-3d打印机图纸下载,在线3d打印模型设计平台"    if self.controller_name == 'home'
-    return title  
+    title = "技师点单系统"
   end
 end

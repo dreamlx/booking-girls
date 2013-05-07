@@ -2,7 +2,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   after_filter :put_nav, only: [:index, :purchase, :favor, :uploaded]
-  before_filter :set_locale, :check_locale_show
+  before_filter :set_locale, :check_locale_show, :check_client
+  
+  def check_client
+    session[:user_agent] =  UserAgent.parse(request.user_agent)
+     
+    
+  end
 		
   def set_locale
     # 可以將 ["en", "zh-TW"] 設定為 VALID_LANG 放到 config/environment.rb 中

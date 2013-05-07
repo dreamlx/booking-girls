@@ -2,41 +2,19 @@
   .navbar-inner
     .container
       %a.brand{href: root_path}
-        3DTZK
-        %sup beta
-      %ul{:class => "nav"}
-        %li
-          = link_to t("menu.Create"), new_product_path
-        %li.dropdown
-          %a{ class: "dropdown-toggle", href: '#', data: { toggle: "dropdown", target: '#' } }
-            = t("menu.Discover")
-            %b.caret
-          %ul{ class: "dropdown-menu", role: "menu", aria: { labellegby: "dLabel" } }
-            - Category.all.each do |category|
-              %li= link_to t("category.#{category.name}"), explorer_path(category)
-                
+        技师点单系统
+      %ul{:class => "nav"}                
         - if user_signed_in?
-          %li.dropdown
-            %a{ class: "dropdown-toggle", href: '#', data: { toggle: "dropdown", target: '#'} }
-              = t("menu.Your Account")
-              %b.caret
-              
-            %ul{ class: "dropdown-menu", role: "menu", aria: {labellegby: "dLabel"} }
-              %li= link_to t("menu.Profile"), edit_user_registration_path
-              %li= link_to t("menu.Your Products"), favor_products_path
+          %li
+            = link_to '技师资料', girls_path
           %li
             =  link_to t("menu.Logout"), destroy_user_session_path, :method => :delete
         - else
           %li
-            =  link_to t("menu.Register"), new_user_registration_path
+            =#  link_to t("menu.Register"), new_user_registration_path
           %li
             =  link_to t("menu.Login"), new_user_session_path
-  .right
-    - if session[:allow_show] == "true" and false
-      = link_to "中文版", {:controller => controller.controller_name, :action => controller.action_name, :locale => "zh-CN"}, :class => @cn_status
-      |             
-      = link_to "English", {:controller => controller.controller_name, :action => controller.action_name, :locale => "en"}, :class => @en_status
-  
+
 #alert-bar.navbar.navbar-static-top
   - unless notice.nil?      
     .alert.alert-block= notice

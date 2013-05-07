@@ -1,0 +1,26 @@
+-# encoding: UTF-8
+= simple_nested_form_for(@girl, html: { class: 'form-horizontal' }) do |f|
+  = f.error_notification
+  
+  .form-inputs
+    -# 时间需要处理
+    = f.input :name
+    = f.input :age
+    = f.input :bwh
+    = f.input :price
+    = f.input :desc
+    = f.input :state, priority: [:pending], collection: [['待钟','pending'], ['上钟', 'working'], ['休假','getoff']]
+    %hr
+    = f.simple_fields_for :pics do |p|
+      %p.fields
+        - if p.object.nil? || p.object.new_record?
+          %span= p.input :photo, as: :file
+        - else
+          %span= image_tag p.object.photo.thumb.url
+          %span.span2= p.link_to_remove t("views.remove"), class: "btn btn-warning"
+        
+
+    = f.link_to_add t("views.add_pictures"), :pics, class: "btn btn-primary btn-smaller"
+  .actions
+    %hr
+    = f.submit

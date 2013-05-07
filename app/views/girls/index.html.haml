@@ -1,0 +1,31 @@
+
+%h1 
+  技师列表
+  = link_to '添加技师', new_girl_path, class: "btn"
+%table.table
+  %tr
+    %th 姓名
+    %th 年龄
+    %th 价格
+    %th 个人资料
+    %th 三围
+    %th 状态
+    %th
+    %th
+    %th
+  - @girls.each do |girl|
+    %tr
+      %td
+        = image_tag girl.photo.thumb.url
+        = girl.name
+      %td= girl.age
+      %td= girl.price
+      %td= girl.bwh
+      %td= girl.desc
+      %td
+        .label.label-info= girl.state
+      %td= link_to '查看', girl, class: "btn"
+      %td= link_to '编辑', edit_girl_path(girl), class: "btn"
+      %td= link_to '删除', girl, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+
+

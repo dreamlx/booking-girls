@@ -1,0 +1,57 @@
+.container-fluid
+  .shop-info-text
+    %span.label.label-info
+      = "年龄：#{@girl.age}"
+    %span.label.label-info
+      = "价格：#{@girl.price}"
+    %span.label.label-info
+      = "三围：#{@girl.bwh}" 
+    %span.label.label-warning
+      = "状态：" + t(".#{@girl.state}") 
+    %span
+
+      
+  .row-fluid
+    .span9{ class: @girl.state == 'getoff' ? "gray" : "" }
+      %p
+        .pikachoose
+          %ul#pikame
+            - @girl.pics.each do |pic|
+              %li
+                %a{:href => pic.photo.url}
+                  = image_tag pic.photo.thumbnail.url
+                %span
+                  = pic.title||"#{@girl.name}"
+    .span3
+      - if user_signed_in?
+        - if not @girl.tasks.last.nil? and @girl.state == 'working'
+          %p
+            开始时间：
+            = @girl.tasks.last.starttime.localtime.strftime("%p %I:%M")
+          %p
+            结束时间：
+            = @girl.tasks.last.endtime.localtime.strftime("%p %I:%M")
+     
+        - case @girl.state
+        - when 'pending'
+          = link_to "上钟", girl_tasks_path(@girl), class: "btn", method: 'POST'
+          = link_to "休假", leave_girl_path(@girl), class: "btn", method: 'PUT'
+        - when 'working'
+          = link_to "加钟", girl_task_path(@girl), class: "btn", method: 'PUT'
+          = link_to "取消", girl_task_path(@girl), class: "btn", method: 'DELETE'
+        - when 'getoff'
+          = link_to "上班", atwork_girl_path(@girl), class: "btn", method: 'PUT'
+        %hr
+          = link_to 'Edit', edit_girl_path(@girl), class: "btn" 
+          = link_to 'Destroy', @girl, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+%p
+  %hr  
+  %h3 
+    = @girl.name
+  %p= @girl.desc
+  
+
+  
+
+
+

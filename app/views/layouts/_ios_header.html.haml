@@ -1,0 +1,10 @@
+%div{:class => "navbar navbar-inverse navbar-static-top"}
+  .navbar-inner
+    .container
+      %a.brand{href: root_path}
+
+#alert-bar.navbar.navbar-static-top
+  - unless notice.nil?      
+    .alert.alert-block= notice
+  -unless alert.nil?
+    .alert.alert-error= alert

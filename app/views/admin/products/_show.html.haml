@@ -1,0 +1,20 @@
+%h3= @product.name
+%h5
+  status:
+  = @product.status||"pending"  
+%span.label.label-info
+  = t("views.designer", designer_name: @product.designer)
+%span.label.label-info
+  = t("views.favor", favor: @product.favor_count)
+%span.label.label-info
+  = t("views.comment", comment: @product.comments.count)
+%ul#pikame
+  - @product.pics.each do |pic|
+    %li
+      %a{:href => pic.photo.url}
+        = image_tag pic.photo.thumbnail.url
+  %p= @product.desc
+  %p= @product.size unless @product.size.blank?
+
+
+

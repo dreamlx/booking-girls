@@ -1,18 +1,20 @@
 .hero-unit
-  %h1
-    3d图纸库
   %p  
-  %p 分享3d图纸和打印模型，为设计师提供一站式服务
-  -#%p= link_to "Learn more", nil, :class => "btn btn-primary btn-large",:style => "color:white"
-  
+    = image_tag "home.jpeg"
 .row-fluid
-  - @categorys.each do |category|
-    - if category.products.count > 0
-      %h3.category
-        = link_to t("category.#{category.name}"), explorer_path(category)
-      %ul.thumbnails
-        - category.products[0..2].each do |product|
-          %li.product-box.span4
-            = render partial: '/share/product', object: product
+  %ul.thumbnails
+    - @girls.each do |girl|
+      %li.product-box.span4
+        %a{:href => girl_path(girl), :class => ["thumbnail", girl.state == 'getoff' ? "gray" : ""]}
+          = image_tag(girl.pics.first.photo.thumbnail.url)
+          .product-details.caption
+            .shop-info-text
+              %span.label.label-info
+                = "年龄：#{girl.age}"
+              %span.label.label-info
+                = "三围：#{girl.bwh}" 
+              %span.label.label-warning
+                = "状态：" + t("girls.show.#{girl.state}")
+        
 
-  = will_paginate @products
+  = will_paginate @girls
