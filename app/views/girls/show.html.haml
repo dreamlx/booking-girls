@@ -18,8 +18,7 @@
           %ul#pikame
             - @girl.pics.each do |pic|
               %li
-                %a{:href => pic.photo.url}
-                  = image_tag pic.photo.thumbnail.url
+                = image_tag pic.photo.thumbnail.url
                 %span
                   = pic.title||"#{@girl.name}"
     .span3
@@ -42,8 +41,8 @@
         - when 'getoff'
           = link_to "上班", atwork_girl_path(@girl), class: "btn", method: 'PUT'
         %hr
-          = link_to 'Edit', edit_girl_path(@girl), class: "btn" 
-          = link_to 'Destroy', @girl, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+          %p= link_to 'Edit', edit_girl_path(@girl), class: "btn" 
+          %p= link_to 'Destroy', @girl, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
 %p
   %hr  
   %h3 

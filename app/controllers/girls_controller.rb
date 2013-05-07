@@ -8,7 +8,6 @@ class GirlsController < InheritedResources::Base
     @girl = Girl.find(params[:id])
     @task = @girl.tasks.last
     render :layout => "ios" if session[:user_agent].platform == 'iPad'
-    
   end
   
   def leave
