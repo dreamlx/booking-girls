@@ -1,5 +1,5 @@
 class GirlsController < InheritedResources::Base
-  before_filter :authenticate_user!, :except =>[:show]
+  before_filter :authenticate_user!, :except =>[:show, :leftpage, :rightpage]
   def index
     @girls = Girl.order("created_at desc").paginate(page: params[:page], per_page: 30)
   end
@@ -20,5 +20,37 @@ class GirlsController < InheritedResources::Base
     @girl = Girl.find(params[:id])
     @girl.come_back
     redirect_to girl_url(@girl)
+  end
+  
+  def prepage
+    id = params[:id].to_i - 1
+    @girl = nil
+    while @girl.nil? and id > 0
+      @girl = Girl.where(["id = ?", id]).first
+      id = id - 1
+    end
+    
+    if !@girl.nil?
+      redirect_to girl_url(@girl)
+    else
+      redirect_to root_url
+    end
+  end
+  
+  def nextpage
+    id = params[:id].to_i + 1
+    @girl = nil
+    last_id = Girl.last.id
+    while @girl.nil? and id < last_id
+      @girl = Girl.where(["id = ?", id]).first
+      id = id + 1
+    end
+    
+    if !@girl.nil?
+      redirect_to girl_url(@girl)
+    else
+      redirect_to root_url
+    end
+    
   end
 end

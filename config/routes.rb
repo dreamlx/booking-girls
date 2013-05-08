@@ -13,6 +13,8 @@ Tzk3d::Application.routes.draw do
     member do
       put :leave
       put :atwork
+      get :prepage
+      get :nextpage
     end
   end
   

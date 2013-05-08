@@ -6,7 +6,7 @@
       %ul{:class => "nav"}                
         - if user_signed_in?
           %li
-            = link_to '技师资料', girls_path
+            = link_to '首页', girls_path
           %li
             =  link_to t("menu.Logout"), destroy_user_session_path, :method => :delete
         - else
