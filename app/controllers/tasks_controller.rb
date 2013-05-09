@@ -3,9 +3,10 @@ class TasksController < ApplicationController
   end
   
   def create
-    workhour = 60
-    @girl = Girl.find(params[:girl_id])
-    @task = @girl.tasks.build( starttime: Time.now, endtime: Time.now + (60 * workhour))
+    worktime      = Dict.where(["category = ?", "workhours"]).first.value.to_i
+    @girl         = Girl.find(params[:girl_id])
+    #60s * worktime min
+    @task         = @girl.tasks.build( starttime: Time.now, endtime: Time.now + (60 * worktime))
     @girl.start_work
     
     if @task.save
@@ -18,10 +19,11 @@ class TasksController < ApplicationController
   end
   
   def update
-    workhour = 60
-     @girl = Girl.find(params[:girl_id])
-    @task = @girl.tasks.last
-    @task.endtime += 60 * workhour
+    worktime      = Dict.where(["category = ?", "workhours"]).first.value.to_i
+    @girl         = Girl.find(params[:girl_id])
+    @task         = @girl.tasks.last
+    #60s * worktime min
+    @task.endtime += 60 * worktime
     @girl.start_work
     if @task.save
       redirect_to girl_url(@girl)
@@ -30,8 +32,8 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    @girl = Girl.find(params[:girl_id])
-    @task = @girl.tasks.last
+    @girl         = Girl.find(params[:girl_id])
+    @task         = @girl.tasks.last
     @task.endtime = Time.now
     @task.save
     @girl.complete_work

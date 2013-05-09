@@ -1,5 +1,5 @@
 class GirlsController < InheritedResources::Base
-  before_filter :authenticate_user!, :except =>[:show, :leftpage, :rightpage]
+  before_filter :authenticate_user!, :except =>[:show, :nextpage, :prepage]
   def index
     @girls = Girl.order("created_at desc").paginate(page: params[:page], per_page: 30)
   end
@@ -41,7 +41,7 @@ class GirlsController < InheritedResources::Base
     id = params[:id].to_i + 1
     @girl = nil
     last_id = Girl.last.id
-    while @girl.nil? and id < last_id
+    while @girl.nil? and id <= last_id
       @girl = Girl.where(["id = ?", id]).first
       id = id + 1
     end

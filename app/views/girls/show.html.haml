@@ -1,5 +1,8 @@
+- @lasttime = @girl.tasks.count > 0 ? @girl.tasks.last.endtime.localtime.to_i : 0
 #girl-show
   .container-fluid
+    -if session[:user_agent].platform == 'iPad'
+      #defaultCountdown{ style: 'margin-bottom:20px;', rel: @lasttime }
     .shop-info-text
       %span.label.label-info
         = "年龄：#{@girl.age}"
@@ -10,7 +13,6 @@
       %span.label.label-warning
         = "状态：" + t(".#{@girl.state}") 
       %span
-
       
     .row-fluid
       .span9{ class: @girl.state == 'getoff' ? "gray" : "" }
@@ -24,13 +26,15 @@
                     = pic.title||"#{@girl.name}"
       .span3
         - if user_signed_in?
+          #defaultCountdown{ rel: @lasttime }
+          %hr
           - if not @girl.tasks.last.nil? and @girl.state == 'working'
             %p
               开始时间：
-              = @girl.tasks.last.starttime.localtime.strftime("%p %I:%M")
+              = @girl.tasks.last.starttime.localtime.strftime("%H:%M")
             %p
               结束时间：
-              = @girl.tasks.last.endtime.localtime.strftime("%p %I:%M")
+              = @girl.tasks.last.endtime.localtime.strftime("%H:%M")
      
           - case @girl.state
           - when 'pending'
@@ -45,10 +49,10 @@
             %p= link_to 'Edit', edit_girl_path(@girl), class: "btn" 
             %p= link_to 'Destroy', @girl, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
   %p
-    %hr  
     %h3 
       = @girl.name
-    %p= @girl.desc
+    
+    #girl-desc= @girl.desc
   
 
   

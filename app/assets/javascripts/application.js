@@ -16,3 +16,17 @@
 // Loads all Bootstrap javascripts
 //= require bootstrap
 //= require jquery_nested_form
+
+$(function () {
+	var austDay = new Date();
+  //alert(austDay);
+	sec = $('#defaultCountdown').attr("rel");
+  if(sec > 0){
+  austDay = sec * 1000 - austDay.getTime() ;
+  austDay = new Date(sec * 1000);
+  //alert(austDay);
+	$('#defaultCountdown').countdown({until: austDay, format: 'MS',layout: '工作中,还有 <b>{mnn}分{snn}秒</b> {desc}', 
+    description: '请耐心等待'});
+
+  }
+});

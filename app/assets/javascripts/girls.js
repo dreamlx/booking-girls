@@ -4,7 +4,8 @@ $(function() {
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount) {
       url = document.URL;
-      id = url.match(/\d+$/)
+      id = url.match(/\d+$/);
+      $("#girl-show").fadeOut();
       //alert(id);
       if(direction == 'left'){ location.href = '/girls/' + id + '/nextpage' }
       if(direction == 'right'){ location.href = '/girls/' + id + '/prepage' }

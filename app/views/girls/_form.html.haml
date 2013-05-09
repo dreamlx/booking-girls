@@ -9,7 +9,7 @@
     = f.input :bwh
     = f.input :price
     = f.input :desc
-    = f.input :state, priority: [:pending], collection: [['待钟','pending'], ['上钟', 'working'], ['休假','getoff']]
+    = f.input :state, priority: [:pending], collection: [['待钟','pending'], ['休假','getoff']]
     %hr
     = f.simple_fields_for :pics do |p|
       %p.fields
