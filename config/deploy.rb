@@ -1,29 +1,32 @@
+#require 'bundler/capistrano'  
+#set :bundle_flags, '--quiet'
+
 # main details
-set :application, "3dtzk"
-role :web, "tzk3d.com"                          # Your HTTP server, Apache/etc
-role :app, "tzk3d.com"                          # This may be the same as your `Web` server
-role :db,  "tzk3d.com", :primary => true # This is where Rails migrations will run
+set :application, "booking-girl"
+role :web, "42.120.9.87"                          # Your HTTP server, Apache/etc
+role :app, "42.120.9.87"                          # This may be the same as your `Web` server
+role :db,  "42.120.9.87", :primary => true # This is where Rails migrations will run
 #role :db,  "3dtzk.com"
 
 #server details
 default_run_options[:pty] = true  # Must be set for the password prompt
-set :deploy_to, "/home/dreamlinx/tzk3d.com"
+set :deploy_to, "/home/dreamlinx/ROR/booking-girl.com"
 set :user, "dreamlinx"
-set :user_sudo, true
+set :use_sudo, false
 set :ssh_options, { :forward_agent => true }
 #repo details
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 set :scm_username, "dreamlx"
 set :scm_passphrase, "github2melx"
-set :repository,  "git@github.com:dreamlx/tzk3d.git"
+set :repository,  "git@github.com:dreamlx/booking-girl.git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 
 
 #tasks
 namespace :deploy do
-  task :start, :roles => :app do
+  task :restart, :roles => :app do
     run "touch #{current_path/tmp/restart.txt}"
   end
   
@@ -40,6 +43,12 @@ namespace :deploy do
     run "mv #{release_path}/config/database.yml #{release_path}/config/database.yml.orig"
     run "mv #{release_path}/config/database.yml.server #{release_path}/config/database.yml"
   end
+
+
+  task :precompile, :roles => :web do  
+    run "cd #{current_path} && rake RAILS_ENV=production assets:precompile"  
+  end  
+
 end
 
 after 'deploy:update_code', 'deploy:symlink_shared'
