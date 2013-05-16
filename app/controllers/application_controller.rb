@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
   
   def check_client
     session[:user_agent] =  UserAgent.parse(request.user_agent)
-     
-    
   end
 		
   def set_locale

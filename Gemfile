@@ -10,7 +10,7 @@ gem 'simple_form'
 gem 'activeadmin'
 gem 'state_machine'
 gem 'awesome_nested_set'
-gem 'yaml_db'
+gem 'useragent'
 
 #i18n
 gem 'rails-i18n'
