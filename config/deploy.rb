@@ -2,7 +2,7 @@
 #set :bundle_flags, '--quiet'
 
 # main details
-set :application, "booking-girl"
+set :application, "booking-girls"
 role :web, "42.120.9.87"                          # Your HTTP server, Apache/etc
 role :app, "42.120.9.87"                          # This may be the same as your `Web` server
 role :db,  "42.120.9.87", :primary => true # This is where Rails migrations will run
@@ -10,7 +10,7 @@ role :db,  "42.120.9.87", :primary => true # This is where Rails migrations will
 
 #server details
 default_run_options[:pty] = true  # Must be set for the password prompt
-set :deploy_to, "/home/dreamlinx/ROR/booking-girl.com"
+set :deploy_to, "/home/dreamlinx/ROR/booking-girls.com"
 set :user, "dreamlinx"
 set :use_sudo, false
 set :ssh_options, { :forward_agent => true }
@@ -19,7 +19,7 @@ set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 set :scm_username, "dreamlx"
 set :scm_passphrase, "github2melx"
-set :repository,  "git@github.com:dreamlx/booking-girl.git"
+set :repository,  "git@github.com:dreamlx/booking-girls.git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 
