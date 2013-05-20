@@ -7,6 +7,15 @@ class GirlsController < InheritedResources::Base
   def show
     @girl = Girl.find(params[:id])
     @task = @girl.tasks.last
+    girls = Girl.all
+    current_index = girls.index(@girl)
+    pre_index     = current_index == 0 ? current_index : (current_index - 1)
+    next_index    = current_index == (girls.size - 1) ? current_index : (current_index + 1)
+
+    @current_id = @girl.id
+    @pre_id = girls[pre_index].id
+    @next_id = girls[next_index].id
+
     render :layout => "ios" if session[:user_agent].platform == 'iPad'
   end
   

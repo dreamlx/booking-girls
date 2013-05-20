@@ -46,7 +46,7 @@ namespace :deploy do
 
 
   task :precompile, :roles => :web do  
-    run "cd #{current_path} && rake RAILS_ENV=production assets:precompile"  
+    run "cd #{current_path} && rvm use 1.9.3@tzk3d && rake RAILS_ENV=production assets:precompile"  
   end  
 
 end

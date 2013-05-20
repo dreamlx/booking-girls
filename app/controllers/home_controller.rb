@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   before_filter :check_girls_state
   def index
-    @girls = Girl.order("created_at desc").paginate(page: params[:page], per_page: 60)
+    @girls = Girl.paginate(page: params[:page], per_page: 60)
     respond_to do |format|
       format.html do
         if session[:user_agent].platform == 'iPad' 

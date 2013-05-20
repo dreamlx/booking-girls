@@ -4,10 +4,13 @@ $(function() {
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount) {
       url = document.URL;
-      id = url.match(/\d+$/);
-      //alert(id);
-      if(direction == 'left'){ location.href = '/girls/' + id + '/nextpage' }
-      if(direction == 'right'){ location.href = '/girls/' + id + '/prepage' }
+      //id = url.match(/\d+$/);
+      current_id  = $("#girl-show").attr("data-current-id");
+      next_id     = $("#girl-show").attr("data-next-id");
+      pre_id      = $("#girl-show").attr("data-pre-id");
+      //alert(current_id);
+      if(direction == 'left'  && current_id != pre_id){ location.href = '/girls/' + pre_id }
+      if(direction == 'right' && current_id != next_id){ location.href = '/girls/' + next_id }
       //window.history.back(); // return last page
       
     },
