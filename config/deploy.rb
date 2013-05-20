@@ -1,8 +1,12 @@
-#require 'bundler/capistrano'  
+#$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+require 'bundler/capistrano' 
+require 'rvm/capistrano' 
 #set :bundle_flags, '--quiet'
-
+#set :bundle_cmd, 'source $HOME/.bash_profile && bundle'
+#set :rvm_type, :user
 # main details
 set :application, "booking-girls"
+set   :keep_releases, 10 
 role :web, "42.120.9.87"                          # Your HTTP server, Apache/etc
 role :app, "42.120.9.87"                          # This may be the same as your `Web` server
 role :db,  "42.120.9.87", :primary => true # This is where Rails migrations will run
@@ -11,6 +15,7 @@ role :db,  "42.120.9.87", :primary => true # This is where Rails migrations will
 #server details
 default_run_options[:pty] = true  # Must be set for the password prompt
 set :deploy_to, "/home/dreamlinx/ROR/booking-girls.com"
+set :current_public, "/home/dreamlinx/ROR/booking-girls.com/public"
 set :user, "dreamlinx"
 set :use_sudo, false
 set :ssh_options, { :forward_agent => true }
@@ -23,7 +28,10 @@ set :repository,  "git@github.com:dreamlx/booking-girls.git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 
-
+after "deploy:update", "deploy:migrate"
+after "deploy:migrate", "deploy:symlink_shared"
+after 'deploy:update_code', 'deploy:symlink_shared'
+after 'deploy:update_code', 'deploy:change_db'
 #tasks
 namespace :deploy do
   task :restart, :roles => :app do
@@ -37,6 +45,8 @@ namespace :deploy do
   desc "Symlink shared resources on each release - not used"
   task :symlink_shared, :roles => :app do
     #run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "rm -rf #{current_path}/public/uploads"
+    run "ln -sf #{shared_path}/uploads #{current_path}/pbulic"
   end
   
   task :change_db , :roles => :app do
@@ -51,8 +61,6 @@ namespace :deploy do
 
 end
 
-after 'deploy:update_code', 'deploy:symlink_shared'
-after 'deploy:update_code', 'deploy:change_db'
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
 
