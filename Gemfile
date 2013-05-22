@@ -75,6 +75,7 @@ group :development, :test do
   gem 'factory_girl_rails' , "~> 1.1.0" ,:require => false
   gem 'database_cleaner', ">= 0.6.7"
   gem "launchy", ">= 2.0.5"
+  gem "erb2haml"
 end
 
 group :development do

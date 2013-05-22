@@ -2,6 +2,7 @@
   %p  
     = image_tag "home.jpeg" 
 .row-fluid
+- if session[:user_agent].platform == 'iPad' or user_signed_in?
   %ul.thumbnails
     - @girls.each do |girl|
       %li.product-box.span4
@@ -16,5 +17,4 @@
               %span.label.label-warning
                 = "状态：" + t("girls.show.#{girl.state}")
         
-
   = will_paginate @girls

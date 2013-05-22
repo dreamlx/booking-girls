@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %b 店名:
+  = @venue.name
+%p
+  %b 地址:
+  = @venue.address
+%p
+  %b 联系人:
+  = @venue.contact
+%p
+  %b 说明:
+  = @venue.desc
+= link_to 'Edit', edit_venue_path(@venue)
+|
+\#{link_to 'Back', venues_path}

@@ -1,7 +1,14 @@
 class HomeController < ApplicationController
   before_filter :check_girls_state
   def index
-    @girls = Girl.paginate(page: params[:page], per_page: 60)
+    @venues = Venue.all
+   
+    if params[:venue_id].blank?
+      @girls = Girl.paginate(page: params[:page], per_page: 60)
+    else
+      @girls = Venue.find(params[:venue_id]).girls.paginate(page: params[:page], per_page: 60)
+    end
+   
     respond_to do |format|
       format.html do
         if session[:user_agent].platform == 'iPad' 

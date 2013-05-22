@@ -1,12 +1,12 @@
 class Girl < ActiveRecord::Base
-  attr_accessible :age, :bwh, :desc, :name, :price, :state,:pics_attributes
+  attr_accessible :age, :bwh, :desc, :name, :price, :state,:pics_attributes, :venue_ids
   
   has_many :pics, as: :picable
-  
   has_many :tasks
-  
+  has_many :girl_venues
+  has_many :venues, through: :girl_venues
+
   accepts_nested_attributes_for :pics, allow_destroy: true, reject_if: :all_blank
-  
   
   state_machine :state, initial: :pending do
     state :pending

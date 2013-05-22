@@ -26,7 +26,8 @@
                     = pic.title||"#{@girl.name}"
       .span3
         - if user_signed_in?
-          #defaultCountdown{ rel: @lasttime }
+          - if @girl.state == 'working' 
+            #defaultCountdown{ rel: @lasttime } 
           %hr
           - if not @girl.tasks.last.nil? and @girl.state == 'working'
             %p

@@ -88,6 +88,7 @@ zh-CN:
         pic: 照片
         state: 状态
         bwh: 三围
+        venues: 店铺
   errors:
     messages:
       carrierwave_processing_error: "Cannot resize image."
