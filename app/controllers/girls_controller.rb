@@ -27,7 +27,7 @@ class GirlsController < InheritedResources::Base
   
   def booking
     @girl = Girl.find(params[:id])
-    @girl.book_me
+    @girl.state == 'pending' ? @girl.book_me : @girl.cancel_book
     redirect_to girl_url(@girl)
   end
 
@@ -66,6 +66,28 @@ class GirlsController < InheritedResources::Base
     else
       redirect_to root_url
     end
-    
   end
+
+
+  # comments
+  def comments
+    @comments = Girl.find(params[:id]).comments
+  end
+
+  def add_comment
+    p = Girl.find(params[:id])
+    c = Comment.new(params[:comment])
+    c.user_id = current_user.id
+    c.save
+    p.comments << c
+    redirect_to girl_path(p), notice: 'Comment was successfully added.'
+  end
+
+  def remove_comment
+    c = Comment.find(params[:comment_id])
+    p =  Girl.find(params[:id])
+    p.comments.delete(c)
+    redirect_to girl_path(p), notice: 'Comment was successfully deleted.'
+  end
+
 end

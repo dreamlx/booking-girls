@@ -25,6 +25,7 @@ gem "cancan"
 gem "acts_as_rateable", :git => "git://github.com/anton-zaytsev/acts_as_rateable.git"
 gem 'acts_as_commentable', '3.0.1'
 gem 'jquery-rails'
+gem 'fancybox2-rails', '~> 0.2.4'
 gem 'haml'
 gem 'carrierwave'
 gem 'rmagick'

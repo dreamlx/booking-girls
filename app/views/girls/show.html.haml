@@ -1,3 +1,4 @@
+
 - @lasttime = @girl.tasks.count > 0 ? @girl.tasks.last.endtime.localtime.to_i : 0
 #girl-show{ "data-current-id" => @current_id, "data-next-id" => @next_id, "data-pre-id" => @pre_id }
   .container-fluid
@@ -22,7 +23,8 @@
             %ul#pikame
               - @girl.pics.each do |pic|
                 %li
-                  = image_tag pic.photo.thumbnail.url
+                  %a{ href: pic.photo.original.url, class: "fancybox", target: "_blank" }
+                    = image_tag pic.photo.thumbnail.url
                   %span
                     = pic.title||"#{@girl.name}"
       .span3
@@ -41,21 +43,30 @@
           - case @girl.state
           - when 'pending'
             = link_to "上钟", girl_tasks_path(@girl), class: "btn", method: 'POST'
-            = link_to "休假", leave_girl_path(@girl), class: "btn", method: 'PUT'
+            = link_to "休假", leave_girl_path(@girl), class: "btn", method: 'PUT'           
           - when 'working'
             = link_to "加钟", girl_task_path(@girl), class: "btn", method: 'PUT'
-            = link_to "取消", girl_task_path(@girl), class: "btn", method: 'DELETE'
+            = link_to "提前结束", girl_task_path(@girl), class: "btn", method: 'DELETE'
           - when 'getoff'
             = link_to "上班", atwork_girl_path(@girl), class: "btn", method: 'PUT'
+          - when 'booked'
+            = link_to "上钟", girl_tasks_path(@girl), class: "btn", method: 'POST'
+            = link_to "取消预定", booking_girl_path(@girl), class: "btn", method: 'PUT'
           %hr
             %p= link_to 'Edit', edit_girl_path(@girl), class: "btn" 
             %p= link_to 'Destroy', @girl, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
   %p
     %h3 
       = @girl.name
-    
     #girl-desc= @girl.desc
-  
+    %h1.comments
+      = t("views.comments")
+    .comments-container
+      %p
+        = render "/comments/leave_comment"
+      %hr
+      - unless @girl.comments.empty?
+        = render partial: "/comments/comment", collection: @girl.comments
 
   
 

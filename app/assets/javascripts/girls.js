@@ -1,4 +1,4 @@
-$(function() {      
+$(function() {
   //Enable swiping...
   $("#girl-show").swipe( {
     //Generic swipe handler for all directions
@@ -18,3 +18,8 @@ $(function() {
      threshold:0
   });
 });
+
+
+$(document).ready(function() {
+        $('a.fancybox').fancybox();
+    });

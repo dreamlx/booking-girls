@@ -2,9 +2,7 @@ Tzk3d::Application.routes.draw do
 
   resources :venues
 
-
   resources :girls
-
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
@@ -19,6 +17,10 @@ Tzk3d::Application.routes.draw do
       get :prepage
       get :nextpage
       put :booking
+
+      get :comments
+      post :add_comment
+      delete :remove_comment
     end
   end
   

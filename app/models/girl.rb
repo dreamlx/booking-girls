@@ -1,6 +1,6 @@
 class Girl < ActiveRecord::Base
   attr_accessible :age, :bwh, :desc, :name, :price, :state,:pics_attributes, :venue_ids
-  
+  acts_as_commentable
   has_many :pics, as: :picable
   has_many :tasks
   has_many :girl_venues
@@ -24,6 +24,10 @@ class Girl < ActiveRecord::Base
     
     event :complete_work do
       transition :working => :pending
+    end
+
+    event :cancel_book do
+      transition [:booked, :pending] => :pending
     end
     
     event :get_off do
