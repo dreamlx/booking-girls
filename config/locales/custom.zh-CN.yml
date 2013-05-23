@@ -15,7 +15,8 @@ zh-CN:
     show:
       pending: 待钟
       working: 上钟
-      getoff: 休假  
+      getoff: 休假
+      booked: 已预定  
   menu:
     Create: 上传模型
     "Your Products": "私人模型库"

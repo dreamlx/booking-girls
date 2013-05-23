@@ -18,6 +18,7 @@ Tzk3d::Application.routes.draw do
       put :atwork
       get :prepage
       get :nextpage
+      put :booking
     end
   end
   

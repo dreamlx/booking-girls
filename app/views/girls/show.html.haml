@@ -1,7 +1,7 @@
 - @lasttime = @girl.tasks.count > 0 ? @girl.tasks.last.endtime.localtime.to_i : 0
 #girl-show{ "data-current-id" => @current_id, "data-next-id" => @next_id, "data-pre-id" => @pre_id }
   .container-fluid
-    -if session[:user_agent].platform == 'iPad'
+    -if session[:user_agent].platform == 'iPad' and @girl.state == 'working'
       #defaultCountdown{ style: 'margin-bottom:20px;', rel: @lasttime }
     .shop-info-text
       %span.label.label-info
@@ -13,7 +13,8 @@
       %span.label.label-warning
         = "状态：" + t(".#{@girl.state}") 
       %span
-      
+        -if session[:user_agent].platform == 'iPad' and @girl.state == 'pending'
+          = link_to "预约", booking_girl_path(@girl), class: "btn-large btn", method: 'PUT'
     .row-fluid
       .span9{ class: @girl.state == 'getoff' ? "gray" : "" }
         %p

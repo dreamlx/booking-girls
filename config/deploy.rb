@@ -35,6 +35,7 @@ set :deploy_via, :remote_cache
 
 after "deploy:update", "deploy:migrate"
 after "deploy:migrate", "deploy:symlink_shared"
+after "deploy:migrate", "deploy:precompile"
 after 'deploy:update_code', 'deploy:change_db'
 
 #tasks

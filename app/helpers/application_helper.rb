@@ -24,4 +24,5 @@ module ApplicationHelper
     #产品-分类-网站名称
     title = "技师点单系统"
   end
+
 end

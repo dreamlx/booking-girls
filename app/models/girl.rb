@@ -12,9 +12,14 @@ class Girl < ActiveRecord::Base
     state :pending
     state :working
     state :getoff
+    state :booked
 
+    event :book_me do
+      transition :pending => :booked
+    end 
+    
     event :start_work do
-      transition [:pending, :working] => :working
+      transition [:booked, :pending] => :working
     end 
     
     event :complete_work do
@@ -22,7 +27,7 @@ class Girl < ActiveRecord::Base
     end
     
     event :get_off do
-      transition :pending => :getoff
+      transition [:pending, :booked] => :getoff
     end
     
     event :come_back do
