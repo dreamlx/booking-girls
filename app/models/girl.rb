@@ -1,4 +1,5 @@
 class Girl < ActiveRecord::Base
+  validates :name, :presence => true
   attr_accessible :age, :bwh, :desc, :name, :price, :state,:pics_attributes, :venue_ids
   acts_as_commentable
   has_many :pics, as: :picable

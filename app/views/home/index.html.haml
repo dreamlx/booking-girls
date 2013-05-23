@@ -1,6 +1,8 @@
-.hero-unit
-  %p  
-    = image_tag "home.jpeg" 
+- if params["venue_id"].blank?
+  .hero-unit
+    %p= image_tag "home.jpeg"
+- else
+  %h1= Venue.find( params["venue_id"]).name 
 .row-fluid
 - if session[:user_agent].platform == 'iPad' or user_signed_in?
   %ul.thumbnails

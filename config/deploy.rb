@@ -52,7 +52,7 @@ namespace :deploy do
   task :symlink_shared, :roles => :app do
     #run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "rm -rf #{current_path}/public/uploads"
-    run "ln -sf #{shared_path}/uploads #{current_path}/pbulic"
+    run "ln -sf #{shared_path}/uploads #{current_path}/public/uploads"
   end
   
   task :change_db , :roles => :app do
