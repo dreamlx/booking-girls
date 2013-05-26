@@ -19,10 +19,6 @@
 //= require jquery_nested_form
 
 $(function () {
-  $("a.fancybox").fancybox({
-    openEffect  : 'none',
-    closeEffect : 'none'
-  });
 	var austDay = new Date();
   //alert(austDay);
 	sec = $('#defaultCountdown').attr("rel");
