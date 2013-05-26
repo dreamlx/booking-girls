@@ -31,7 +31,7 @@
                 %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "girls-group" }
                   = image_tag pic.photo.original.url
       .span3
-        - if user_signed_in?
+        - if user_signed_in? and session[:user_agent].platform == 'iPad'
           - if @girl.state == 'working' 
             #defaultCountdown{ rel: @lasttime } 
           %hr
