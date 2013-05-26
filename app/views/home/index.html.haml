@@ -4,7 +4,7 @@
 - else
   %h1= Venue.find( params["venue_id"]).name 
 .row-fluid
-- if session[:user_agent].platform == 'iPad' or user_signed_in?
+- if user_signed_in?
   %ul.thumbnails
     - @girls.each do |girl|
       %li.product-box.span4
@@ -18,5 +18,7 @@
                 = "三围：#{girl.bwh}" 
               %span.label.label-warning
                 = "状态：" + t("girls.show.#{girl.state}")
-        
+- else
+  %center=  link_to t("menu.Login"), new_user_session_path, class: "btn btn-large"
+   
   = will_paginate @girls

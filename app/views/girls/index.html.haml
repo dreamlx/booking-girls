@@ -25,7 +25,7 @@
       %td
         .label.label-info= girl.state
       %td= link_to '查看', girl, class: "btn"
-      %td= link_to '编辑', edit_girl_path(girl), class: "btn"
-      %td= link_to '删除', girl, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+      %td= link_to '编辑', edit_girl_path(girl), class: "btn" if girl.state == 'pending' or girl.state == 'getoff'
+      %td= link_to '删除', girl, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" if girl.state == 'pending' or girl.state == 'getoff'
 
 
