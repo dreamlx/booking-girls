@@ -1,3 +1,6 @@
+require 'capistrano/ext/multistage'
+set :stages, ["staging","production"]
+set :default_stage, "staging"
 set :rvm_ruby_string, :local               # use the same ruby as used locally for deployment
 set :rvm_autolibs_flag, "read-only"        # more info: rvm help autolibs
 
@@ -10,17 +13,11 @@ require 'rvm/capistrano'
 #set :rvm_type, :user
 # main details
 set :application, "booking-girls"
-set   :keep_releases, 10 
-role :web, "42.120.9.87"                          # Your HTTP server, Apache/etc
-role :app, "42.120.9.87"                          # This may be the same as your `Web` server
-role :db,  "42.120.9.87", :primary => true # This is where Rails migrations will run
-#role :db,  "3dtzk.com"
-
+set :keep_releases, 10 
 
 #server details
 default_run_options[:pty] = true  # Must be set for the password prompt
-set :deploy_to, "/home/dreamlinx/ROR/booking-girls.com"
-set :current_public, "/home/dreamlinx/ROR/booking-girls.com/public"
+set :current_public, "#{ current_path }/public"
 set :user, "dreamlinx"
 set :use_sudo, false
 set :ssh_options, { :forward_agent => true }

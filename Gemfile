@@ -88,6 +88,7 @@ group :development do
 
   gem "rvm-capistrano"
   gem 'capistrano', '~> 2.12.0'
+  gem 'capistrano-ext' # Multistage Extension
 end
 
 group :test do
