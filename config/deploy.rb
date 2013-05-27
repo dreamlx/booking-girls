@@ -17,7 +17,7 @@ set :keep_releases, 10
 
 #server details
 default_run_options[:pty] = true  # Must be set for the password prompt
-set :current_public, "#{ current_path }/public"
+set :current_public, "#{current_path}/public"
 set :user, "dreamlinx"
 set :use_sudo, false
 set :ssh_options, { :forward_agent => true }
