@@ -1,0 +1,14 @@
+-# encoding: UTF-8
+= simple_form_for [@girl,@task] do |f|
+  = f.error_notification
+  
+  .form-inputs
+    -# 时间需要处理
+    = f.association :girl, input_html: { :disabled => :disabled }
+    = f.input :intermediary
+    = f.input :price
+    = f.input :title
+
+  .actions
+    %hr
+    = f.submit "上钟"

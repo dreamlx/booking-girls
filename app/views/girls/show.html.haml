@@ -31,34 +31,7 @@
                 %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "girls-group" }
                   = image_tag pic.photo.original.url
       .span3
-        - if user_signed_in? and session[:user_agent].platform != 'iPad'
-          - if @girl.state == 'working' 
-            #defaultCountdown{ rel: @lasttime } 
-          %hr
-          - if not @girl.tasks.last.nil? and @girl.state == 'working'
-            %p
-              开始时间：
-              = @girl.tasks.last.starttime.localtime.strftime("%H:%M")
-            %p
-              结束时间：
-              = @girl.tasks.last.endtime.localtime.strftime("%H:%M")
-     
-          - case @girl.state
-          - when 'pending'
-            = link_to "上钟", girl_tasks_path(@girl), class: "btn", method: 'POST'
-            = link_to "休假", leave_girl_path(@girl), class: "btn", method: 'PUT'           
-          - when 'working'
-            = link_to "加钟", girl_task_path(@girl), class: "btn", method: 'PUT'
-            = link_to "提前结束", girl_task_path(@girl), class: "btn", method: 'DELETE'
-          - when 'getoff'
-            = link_to "上班", atwork_girl_path(@girl), class: "btn", method: 'PUT'
-          - when 'booked'
-            = link_to "上钟", girl_tasks_path(@girl), class: "btn", method: 'POST'
-            = link_to "取消预定", booking_girl_path(@girl), class: "btn", method: 'PUT'
-          %hr
-            - if @girl.state == 'pending' or @girl.state == 'getoff'
-              %p= link_to 'Edit', edit_girl_path(@girl), class: "btn" 
-              %p= link_to 'Destroy', @girl, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+        = render "leftbar" 
   %p
     %h3 
       技师介绍：

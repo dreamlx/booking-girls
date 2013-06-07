@@ -10,6 +10,8 @@
           %li
             = link_to '店铺', venues_path
           %li
+            = link_to '上钟统计', tasks_path
+          %li
             =  link_to t("menu.Logout"), destroy_user_session_path, :method => :delete
         - else
           %li

@@ -1,0 +1,21 @@
+%h1  上钟统计
+%table.table
+  %tr
+    %th 姓名
+    %th 价格
+    %th 介绍人
+    %th 开始时间
+    %th 结束时间
+    %th 实际用时（分钟）
+    %th 其他说明
+  - @tasks.each do |task|
+    %tr
+      %td= task.girl.name unless task.girl.nil?
+      %td= task.price
+      %td= task.intermediary
+      %td= task.starttime.strftime("%Y/%m/%d %H:%M")
+      %td= task.endtime.strftime("%Y/%m/%d %H:%M")
+      %td= ((task.endtime - task.starttime)/60).to_i
+      %td= task.title
+
+= will_paginate @tasks

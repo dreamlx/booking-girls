@@ -2,14 +2,22 @@ class TasksController < ApplicationController
   def new
   end
   
+  def index
+    @tasks = Task.order("created_at DESC").paginate(page: params[:page], per_page: 10)
+  end
+  
   def create
     worktime      = Dict.where(["category = ?", "workhours"]).first.value.to_i
     @girl         = Girl.find(params[:girl_id])
     #60s * worktime min
-    @task         = @girl.tasks.build( starttime: Time.now, endtime: Time.now + (60 * worktime))
-    @girl.start_work
+    @task = Task.new(params[:task])
+    @task.price =0 if @task.price.blank?
+    @task.starttime = Time.now
+    @task.endtime = Time.now + (60 * worktime)
+    
     
     if @task.save
+      @girl.start_work
       redirect_to girl_url(@girl)
     else
     end
