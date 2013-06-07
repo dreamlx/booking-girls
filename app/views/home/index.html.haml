@@ -9,7 +9,7 @@
     - @girls.each do |girl|
       %li.product-box.span4
         %a{:href => girl_path(girl), :class => ["thumbnail", girl.state == 'getoff' ? "gray" : ""]}
-          = image_tag(girl.pics.first.photo.thumbnail.url)
+          = image_tag(girl.pics.first.photo.thumbnail.url) unless girl.pics.blank?
           .product-details.caption
             .shop-info-text
               %span.label.label-info

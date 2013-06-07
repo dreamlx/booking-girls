@@ -19,3 +19,14 @@ $(function() {
   });
 });
 
+    (function(window, $, PhotoSwipe){
+      
+      $(document).ready(function(){
+        
+        var options = {};
+        $("#Gallery a").photoSwipe(options);
+        
+      });
+      
+      
+    }(window, window.jQuery, window.Code.PhotoSwipe));
