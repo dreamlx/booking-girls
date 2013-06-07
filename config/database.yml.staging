@@ -7,7 +7,7 @@ development:
   adapter: mysql2
   host: dreamlx2.mysql.rds.aliyuncs.com 
   port: 3306
-  database: booking_test
+  database: book_test
   username: booktest
   password: book2014
   encoding: utf8
@@ -16,7 +16,7 @@ test:
   adapter: mysql2
   host: dreamlx2.mysql.rds.aliyuncs.com 
   port: 3306
-  database: booking_test
+  database: book_test
   username: booktest
   password: book2014
   encoding: utf8
@@ -25,7 +25,7 @@ production:
   adapter: mysql2
   host: dreamlx2.mysql.rds.aliyuncs.com 
   port: 3306
-  database: booking_test
+  database: book_test
   username: booktest
   password: book2014
   encoding: utf8
