@@ -8,13 +8,13 @@ class TasksController < ApplicationController
   
   def create
     worktime      = Dict.where(["category = ?", "workhours"]).first.value.to_i
-    @girl         = Girl.find(params[:girl_id])
+    
     #60s * worktime min
     @task = Task.new(params[:task])
     @task.price =0 if @task.price.blank?
     @task.starttime = Time.now
     @task.endtime = Time.now + (60 * worktime)
-    
+    @girl = Girl.find(@task.girl_id)
     
     if @task.save
       @girl.start_work

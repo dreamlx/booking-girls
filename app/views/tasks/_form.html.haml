@@ -1,5 +1,5 @@
 -# encoding: UTF-8
-= simple_form_for [@girl,@task] do |f|
+= simple_form_for @girl.tasks.build do |f|
   = f.error_notification
   
   .form-inputs
@@ -8,7 +8,9 @@
     = f.input :intermediary
     = f.input :price
     = f.input :title
+    = f.input :girl_id, :as => "hidden", input_html: { value: @girl.id }
+
 
   .actions
     %hr
-    = f.submit "上钟"
+    = f.submit "上钟", :class => "btn btn-warning" 

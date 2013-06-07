@@ -41,7 +41,7 @@ class Girl < ActiveRecord::Base
   end
   
   def photo
-    self.pics.first.photo
+    self.pics.blank? ? "" : self.pics.first.photo
   end
 
 end

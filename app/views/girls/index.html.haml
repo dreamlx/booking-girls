@@ -16,7 +16,7 @@
   - @girls.each do |girl|
     %tr
       %td
-        = image_tag girl.photo.thumb.url
+        = image_tag girl.photo.thumb.url unless girl.photo.blank?
         = girl.name
       %td= girl.age
       %td= girl.price
