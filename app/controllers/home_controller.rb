@@ -11,11 +11,7 @@ class HomeController < ApplicationController
    
     respond_to do |format|
       format.html do
-        if session[:user_agent].platform == 'iPad' 
-          render :layout => "ios" 
-        else
-          render action: "index" 
-        end
+        render action: "index" 
       end
       
       format.json do
