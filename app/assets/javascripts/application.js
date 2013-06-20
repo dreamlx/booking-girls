@@ -13,10 +13,11 @@
 //= require jquery
 //= require fancybox
 //= require jquery_ujs
+//= require_tree .
 // Loads all Bootstrap javascripts
 //= require bootstrap
 //= require jquery_nested_form
-//= require_tree .
+
 $(function () {
 	var austDay = new Date();
   //alert(austDay);
