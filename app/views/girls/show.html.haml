@@ -2,7 +2,7 @@
 - @lasttime = @girl.tasks.count > 0 ? @girl.tasks.last.endtime.localtime.to_i : 0
 #girl-show{ "data-current-id" => @current_id, "data-next-id" => @next_id, "data-pre-id" => @pre_id }
   .container-fluid
-    -if session[:user_agent].platform == 'iPad' and @girl.state == 'working'
+    -if session[:user_agent].platform == 'iPad' or @girl.state == 'working'
       #defaultCountdown{ style: 'margin-bottom:20px;', rel: @lasttime }
     .shop-info-text
       %span

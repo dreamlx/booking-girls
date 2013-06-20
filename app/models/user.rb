@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :name
+  attr_accessible :name, :admin
   
   has_one :profile
   accepts_nested_attributes_for :profile
@@ -23,4 +23,6 @@ class User < ActiveRecord::Base
   has_many :purchase_products, :through => :product_relations, :source => :product, :conditions => "product_relations.rs_name = 'purchase'"
   has_many :favor_products, :through => :product_relations, :source => :product, :conditions => "product_relations.rs_name = 'favor'"
   has_many :uploaded_products, :through => :product_relations, :source => :product, :conditions => "product_relations.rs_name = 'uploaded'"
+
+  has_and_belongs_to_many :roles
 end
