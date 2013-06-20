@@ -32,4 +32,14 @@ class ApplicationController < ActionController::Base
       session[:allow_show] = "false"
     end
   end
+
+  def check_girls_state
+    girls = Girl.where(["state = ? ", "working"])
+    
+    girls.each do |girl|
+      last_task = girl.tasks.last
+      next if last_task.nil?
+      girl.complete_work if last_task.endtime < Time.now
+    end
+  end
 end

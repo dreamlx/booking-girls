@@ -28,7 +28,7 @@
           - @girl.pics.each_with_index do |pic, index|
             %li.span9
               %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "girls-group" }
-                = image_tag pic.photo.original.url
+                = image_tag pic.photo.normal.url
       .span3
         = render "leftbar" 
   %p
