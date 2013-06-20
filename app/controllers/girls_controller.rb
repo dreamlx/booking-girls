@@ -16,6 +16,7 @@ class GirlsController < InheritedResources::Base
     @pre_id = girls[pre_index].id
     @next_id = girls[next_index].id
 
+    render :layout => "ios" if session[:user_agent].platform == 'iPad'
   end
   
   def leave

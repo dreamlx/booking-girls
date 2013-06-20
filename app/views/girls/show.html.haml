@@ -2,16 +2,15 @@
 - @lasttime = @girl.tasks.count > 0 ? @girl.tasks.last.endtime.localtime.to_i : 0
 #girl-show{ "data-current-id" => @current_id, "data-next-id" => @next_id, "data-pre-id" => @pre_id }
   .container-fluid
-    -if @girl.state == 'working'
+    -if session[:user_agent].platform == 'iPad' or @girl.state == 'working'
       #defaultCountdown{ style: 'margin-bottom:20px;', rel: @lasttime }
-    -else
-      -if current_user.admin?
-        - if @girl.state == 'pending'
-          = link_to "预约", booking_girl_path(@girl), class: "btn-large btn", method: 'PUT'
-        - else
-          = link_to "取消预定", booking_girl_path(@girl), class: "btn", method: 'PUT'  
-    %hr
     .shop-info-text
+      %span
+        -if session[:user_agent].platform == 'iPad' 
+          - if @girl.state == 'pending'
+            = link_to "预约", booking_girl_path(@girl), class: "btn-large btn", method: 'PUT'
+          - else
+            = link_to "取消预定", booking_girl_path(@girl), class: "btn", method: 'PUT'  
       %span.label.label-info
         = "姓名：#{@girl.name}"
       %span.label.label-info
@@ -20,15 +19,20 @@
         = "价格：#{@girl.price}"
       %span.label.label-info
         = "三围：#{@girl.bwh}" 
-      %span.label{ class: @girl.state == 'working' ? "label-important" : "label-warning" }
+      %span.label.label-warning
         = "状态：" + t(".#{@girl.state}") 
     .row-fluid
       .span9{ class: @girl.state == 'getoff' ? "gray" : "" }
         %ul.thumbnails
           - @girl.pics.each_with_index do |pic, index|
-            %li.span9
-              %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "girls-group" }
-                = image_tag pic.photo.original.url
+            - if index > 0
+              %li.span4
+                %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "girls-group" }
+                  = image_tag pic.photo.thumbnail.url
+            - else
+              %li.span9
+                %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "girls-group" }
+                  = image_tag pic.photo.original.url
       .span3
         = render "leftbar" 
   %p

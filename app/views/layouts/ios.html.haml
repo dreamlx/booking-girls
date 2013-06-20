@@ -1,0 +1,14 @@
+!!! 5
+%html
+  %head
+    %title= get_head_title
+        
+    = stylesheet_link_tag    "application", :media => "all" 
+    = javascript_include_tag "application" 
+    = csrf_meta_tags 
+    %meta{content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=4;", name: 'viewport'} 
+    
+  %body
+    = render "layouts/ios_header"
+    .container#content= yield
+    
