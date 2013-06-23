@@ -11,6 +11,7 @@ gem 'activeadmin'
 gem 'state_machine'
 gem 'awesome_nested_set'
 gem 'useragent'
+gem 'gon'
 
 #i18n
 gem 'rails-i18n'
