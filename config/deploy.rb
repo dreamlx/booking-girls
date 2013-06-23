@@ -8,7 +8,7 @@ before 'deploy:setup', 'rvm:install_rvm'   # install RVM
 before 'deploy:setup', 'rvm:install_ruby'  # install Ruby and create gemset, OR:
 before 'deploy:setup', 'rvm:create_gemset' # only create gemset
 require 'rvm/capistrano' 
-require 'bundler/capistrano'  # 支持自动bundler
+
 #set :bundle_flags, '--quiet'
 
 #set :rvm_type, :user
