@@ -1,3 +1,3 @@
-ActiveAdmin.register Comment, :as => "ProductComment" do
+ActiveAdmin.register Comment, :as => "Comment" do
   
 end
