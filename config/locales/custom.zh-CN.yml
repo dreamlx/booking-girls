@@ -60,6 +60,7 @@ zh-CN:
       product: 模型
       comment: 评论 
       girl: 技师
+      service: 服务
     attributes:
       user:
         email: 邮箱
