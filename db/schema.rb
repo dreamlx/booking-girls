@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621055441) do
+ActiveRecord::Schema.define(:version => 20130624023341) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -95,6 +95,16 @@ ActiveRecord::Schema.define(:version => 20130621055441) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "girls_services", :force => true do |t|
+    t.integer  "girl_id"
+    t.integer  "service_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "girls_services", ["girl_id"], :name => "index_girls_services_on_girl_id"
+  add_index "girls_services", ["service_id"], :name => "index_girls_services_on_service_id"
 
   create_table "model3ds", :force => true do |t|
     t.string   "title"
@@ -189,9 +199,9 @@ ActiveRecord::Schema.define(:version => 20130621055441) do
 
   create_table "services", :force => true do |t|
     t.string   "service_name"
-    t.decimal  "price"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.decimal  "service_price"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "tasks", :force => true do |t|
