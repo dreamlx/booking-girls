@@ -1,6 +1,10 @@
 class HomeController < ApplicationController
+  before_filter :authenticate_user!, :except => :index
   before_filter :check_girls_state
   def index
+  end
+
+  def girls
     @venues = Venue.all
    
     if params[:venue_id].blank?
@@ -11,7 +15,7 @@ class HomeController < ApplicationController
    
     respond_to do |format|
       format.html do
-        render action: "index" 
+        render action: "girls" 
       end
       
       format.json do
@@ -21,6 +25,11 @@ class HomeController < ApplicationController
         render json: @girls 
       end
     end
+  end
+
+  def services
+    @services = Service.all
+    @girls = Service.find(params[:service]).girls unless params[:service].blank?
   end
   
 end
