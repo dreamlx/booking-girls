@@ -1,5 +1,8 @@
 Tzk3d::Application.routes.draw do
 
+  resources :service_menus
+
+
   resources :venues
 
   resources :girls
@@ -49,10 +52,13 @@ Tzk3d::Application.routes.draw do
     end
   end
 
+  resources :home do
+    collection do
+      get :services
+      get :venues
+    end
+  end
 
-  resources :topics, only: [:index]
-  resources :home, only: [:index]
-  resources :explorer
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

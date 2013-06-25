@@ -1,25 +1,25 @@
 class HomeController < ApplicationController
+  before_filter :authenticate_user!, :except => :index
   before_filter :check_girls_state
   def index
+  end
+
+  def venues
     @venues = Venue.all
    
-    if params[:venue_id].blank?
-      @girls = Girl.paginate(page: params[:page], per_page: 60)
+    if params[:venue].blank?
+      @girls = Girl.paginate(page: params[:page], per_page: 30)
     else
-      @girls = Venue.find(params[:venue_id]).girls.paginate(page: params[:page], per_page: 60)
+      @girls = Venue.find(params[:venue]).girls.paginate(page: params[:page], per_page: 30)
     end
-   
-    respond_to do |format|
-      format.html do
-        render action: "index" 
-      end
-      
-      format.json do
-        @girls.each do |girl|
-          girl["img_url"] = girl.pics.first.photo.thumbnail.url
-        end 
-        render json: @girls 
-      end
+  end
+
+  def services
+    @service_menus = ServiceMenu.all
+    if params[:service_menu].blank?
+      @girls = Girl.where("state <> ?", "getoff").paginate(page: params[:page], per_page: 30)
+    else
+      @girls = ServiceMenu.find(params[:service_menu]).girls.paginate(page: params[:page], per_page: 30)
     end
   end
   

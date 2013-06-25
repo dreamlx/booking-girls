@@ -1,0 +1,18 @@
+%h1 服务项目
+%p= link_to 'New', new_service_menu_path, class: "btn"
+%table.table
+  %tr
+    %th 服务名称
+    %th 服务价格
+    %th
+    %th
+    %th
+  - @service_menus.each do |service_menu|
+    %tr
+      %td= service_menu.service_name
+      %td= service_menu.service_price
+      %td= link_to '展示', service_menu, class: "btn"
+      %td= link_to '编辑', edit_service_menu_path(service_menu), class: "btn"
+      %td= link_to '删除', service_menu, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn"
+%br/
+

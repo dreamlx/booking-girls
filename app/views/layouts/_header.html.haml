@@ -7,29 +7,24 @@
       %ul{:class => "nav", role: "navigation"}                
         - if user_signed_in?
           %li
-            = link_to '技师资料', girls_path if current_user.admin?
+            = link_to "按店铺", venues_home_index_path
           %li
-            = link_to '店铺', venues_path if current_user.admin?
-          %li
-            = link_to '上钟统计', tasks_path if current_user.admin?
+            = link_to "按服务", services_home_index_path
+          - if current_user.admin?
+            %li
+              = link_to '技师资料', girls_path
+            %li
+              = link_to '店铺', venues_path
+            %li
+              = link_to '服务', service_menus_path  
+            %li
+              = link_to '上钟统计', tasks_path
           %li
             =  link_to t("menu.Logout"), destroy_user_session_path, :method => :delete
         - else
           %li
             =  link_to t("menu.Login"), new_user_session_path
-      - if user_signed_in?      
-        %ul{ class: "nav pull-righ" }
-          %li{ id: "fat-menu", class: "dropdwon"}
-            %a{ :class => "dropdown-toggle", "data-toggle" => "dropdown", :href => '#', role: "button", id: "drop-shop" }
-              选择分店
-            %ul{ class: "dropdown-menu", role: "menu", "aria-labelledby" => "drop-shop" }
-              %li{ role: "presentation" } 
-                %a{href: "/home"}
-                  = "全部"
-              - Venue.all.each do |venue|
-                %li{ role: "presentation" } 
-                  %a{ href: "/home?venue_id=#{venue.id}" }
-                    = venue.name
+
 #alert-bar.navbar.navbar-static-top
   - unless notice.nil?      
     .alert.alert-block= notice

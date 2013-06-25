@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %b 服务名称:
+  = @service_menu.service_name
+%p
+  %b S服务价格:
+  = @service_menu.service_price
+= link_to '编辑', edit_service_menu_path(@service_menu)
+|
+\#{link_to '返回', service_menus_path}

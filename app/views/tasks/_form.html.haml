@@ -9,7 +9,7 @@
     = f.input :price
     = f.input :title
     = f.input :girl_id, :as => "hidden", input_html: { value: @girl.id }
-    = f.association :services, as: :check_boxes, label_method: :name_with_price, value_method: :id, label: "服务内容"
+    = f.association :service_menus, as: :check_boxes, collection: @girl.service_menus, label_method: :service_name
 
   .actions
     %hr

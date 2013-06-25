@@ -1,0 +1,10 @@
+%h1 
+  查看服务
+.row-fluid
+  %ul.nav.nav-pills
+    %li= link_to "还原", services_home_index_path, class: "btn btn-large"
+    - @service_menus.each do |service_menu|
+      %li= link_to service_menu.service_name, services_home_index_path(service_menu: service_menu), class: "btn btn-large"
+= render "girls_list"
+
+
