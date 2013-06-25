@@ -1,6 +1,7 @@
-class Service < ActiveRecord::Base
-  attr_accessible :service_price, :service_name
+class ServiceMenu < ActiveRecord::Base
+  attr_accessible :service_name, :service_price
 
+  
   has_and_belongs_to_many :tasks
   has_and_belongs_to_many :girls
 
@@ -11,5 +12,4 @@ class Service < ActiveRecord::Base
       return 0
     end
   end
-
 end

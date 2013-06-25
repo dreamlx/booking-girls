@@ -16,7 +16,7 @@ class GirlsController < InheritedResources::Base
     @current_id = @girl.id
     @pre_id = girls[pre_index].id
     @next_id = girls[next_index].id
-    gon.services = Service.all.to_json
+    gon.services = ServiceMenu.all.to_json
   end
   
   def leave

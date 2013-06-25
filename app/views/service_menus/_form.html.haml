@@ -1,0 +1,19 @@
+= form_for(@service_menu) do |f|
+  - if @service_menu.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@service_menu.errors.count, "error")
+        prohibited this service_menu from being saved:
+      %ul
+        - @service_menu.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label "服务名称"
+    %br/
+    = f.text_field :service_name
+  .field
+    = f.label "服务价格"
+    %br/
+    = f.text_field :service_price
+  .actions
+    = f.submit

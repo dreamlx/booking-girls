@@ -1,5 +1,8 @@
 Tzk3d::Application.routes.draw do
 
+  resources :service_menus
+
+
   resources :venues
 
   resources :girls

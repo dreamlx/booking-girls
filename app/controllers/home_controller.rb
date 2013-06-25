@@ -15,11 +15,11 @@ class HomeController < ApplicationController
   end
 
   def services
-    @services = Service.all
-    if params[:service].blank?
+    @service_menus = ServiceMenu.all
+    if params[:service_menu].blank?
       @girls = Girl.where("state <> ?", "getoff").paginate(page: params[:page], per_page: 30)
     else
-      @girls = Service.find(params[:service]).girls.paginate(page: params[:page], per_page: 30)
+      @girls = ServiceMenu.find(params[:service_menu]).girls.paginate(page: params[:page], per_page: 30)
     end
   end
   

@@ -6,7 +6,7 @@
     -# 时间需要处理
     = f.input :name
     = f.association :venues, as: :check_boxes
-    = f.association :services,label_method: :name_with_price, value_method: :id, as: :check_boxes, label: "服务内容"
+    = f.association :service_menus,label_method: :name_with_price, value_method: :id, as: :check_boxes, label: "服务内容"
     = f.input :age
     = f.input :bwh
     = f.input :price
