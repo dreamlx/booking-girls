@@ -5,6 +5,6 @@ class ServicesGirls < ActiveRecord::Migration
       t.references :service_menu
     end
     add_index :girls_services, :girl_id
-    add_index :girls_services, :service_id
+    add_index :girls_services, :service_menu_id
   end
 end
