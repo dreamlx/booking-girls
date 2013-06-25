@@ -14,6 +14,14 @@ GIT
       spork (>= 0.8.4)
 
 GIT
+  remote: git://github.com/radar/by_star
+  revision: 38ddc09bfc1f7b054783153e5e187daa3efb9da7
+  specs:
+    by_star (2.1.0.beta2)
+      activerecord (~> 3.0)
+      chronic
+
+GIT
   remote: git://github.com/yrgoldteeth/bootstrap-will_paginate.git
   revision: 994fbb96ab52d2bdbb6035e534060f9df18b34c6
   specs:
@@ -103,6 +111,7 @@ GEM
       activesupport (>= 3.2.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
+    chronic (0.9.1)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -362,6 +371,7 @@ DEPENDENCIES
   binding_of_caller (~> 0.7.1)
   bootstrap-sass
   bootstrap-will_paginate!
+  by_star!
   cancan
   capistrano (~> 2.12.0)
   capistrano-ext

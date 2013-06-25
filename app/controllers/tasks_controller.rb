@@ -3,7 +3,26 @@ class TasksController < ApplicationController
   end
   
   def index
-    @tasks = Task.order("created_at DESC").paginate(page: params[:page], per_page: 10)
+    case params[:by_star]
+    when "today"
+      tasks = Task.today.order("created_at DESC")
+    when "yesterday"
+      tasks = Task.yesterday.order("created_at DESC")
+    when "thisweek"
+      tasks = Task.by_week.order("created_at DESC")
+    when "thismonth"
+      tasks = Task.by_month.order("created_at DESC")
+    when "beforeweek"
+      week = Time.now.strftime("%W").to_i - 1
+      year = (week != 0 ? Time.now.strftime("%Y").to_i : Time.now.strftime("%Y").to_i - 1)
+      tasks = Task.by_week(week, :year => year).order("created_at DESC")
+    when "thisyear"
+      tasks = Task.by_year.order("created_at DESC")
+    else
+      tasks = Task.order("created_at DESC")
+    end
+    @total_prices = tasks.sum(:price)
+    @tasks = tasks.paginate(page: params[:page], per_page: 50)
   end
   
   def create

@@ -1,4 +1,15 @@
 %h1  上钟统计
+%p
+  = link_to "今天", tasks_path(:by_star => "today"), class: "btn"
+  = link_to "昨天", tasks_path(:by_star => "yesterday"), class: "btn"
+  = link_to "本周", tasks_path(:by_star => "thisweek"), class: "btn"
+  = link_to "上周", tasks_path(:by_star => "beforeweek"), class: "btn"
+  = link_to "本月", tasks_path(:by_star => "thismonth"), class: "btn"
+  = link_to "本年", tasks_path(:by_star => "thisyear"), class: "btn"
+%hr
+%span.label.label-warning
+  合计价格： 
+  = @total_prices
 %table.table
   %tr
     %th 姓名
@@ -11,7 +22,8 @@
   - @tasks.each do |task|
     %tr
       %td= task.girl.name unless task.girl.nil?
-      %td= task.price
+      %td
+        %span.label= task.price
       %td= task.intermediary
       %td= task.starttime.strftime("%Y/%m/%d %H:%M")
       %td= task.endtime.strftime("%Y/%m/%d %H:%M")
