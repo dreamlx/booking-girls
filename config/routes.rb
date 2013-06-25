@@ -52,7 +52,7 @@ Tzk3d::Application.routes.draw do
   resources :home do
     collection do
       get :services
-      get :girls
+      get :venues
     end
   end
 

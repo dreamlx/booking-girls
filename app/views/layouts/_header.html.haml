@@ -7,9 +7,9 @@
       %ul{:class => "nav", role: "navigation"}                
         - if user_signed_in?
           %li
-            = link_to "全体技师", girls_home_index_path
+            = link_to "按店铺", venues_home_index_path
           %li
-            = link_to "服务项目", services_home_index_path
+            = link_to "按服务", services_home_index_path
           %li
             = link_to '技师资料', girls_path if current_user.admin?
           %li

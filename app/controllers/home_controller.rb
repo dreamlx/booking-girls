@@ -4,32 +4,23 @@ class HomeController < ApplicationController
   def index
   end
 
-  def girls
+  def venues
     @venues = Venue.all
    
-    if params[:venue_id].blank?
-      @girls = Girl.paginate(page: params[:page], per_page: 60)
+    if params[:venue].blank?
+      @girls = Girl.paginate(page: params[:page], per_page: 30)
     else
-      @girls = Venue.find(params[:venue_id]).girls.paginate(page: params[:page], per_page: 60)
-    end
-   
-    respond_to do |format|
-      format.html do
-        render action: "girls" 
-      end
-      
-      format.json do
-        @girls.each do |girl|
-          girl["img_url"] = girl.pics.first.photo.thumbnail.url
-        end 
-        render json: @girls 
-      end
+      @girls = Venue.find(params[:venue]).girls.paginate(page: params[:page], per_page: 30)
     end
   end
 
   def services
     @services = Service.all
-    @girls = Service.find(params[:service]).girls unless params[:service].blank?
+    if params[:service].blank?
+      @girls = Girl.where("state <> ?", "getoff").paginate(page: params[:page], per_page: 30)
+    else
+      @girls = Service.find(params[:service]).girls.paginate(page: params[:page], per_page: 30)
+    end
   end
   
 end

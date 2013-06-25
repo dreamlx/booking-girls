@@ -1,0 +1,9 @@
+%h1 查看技师
+.row-fluid
+  %ul.nav.nav-pills
+    %li= link_to "全部", venues_home_index_path, class: "btn btn-large"
+    - @venues.each do |venue|
+      %li= link_to venue.name, venues_home_index_path(venue: venue), class: "btn btn-large"
+= render "girls_list"
+
+
