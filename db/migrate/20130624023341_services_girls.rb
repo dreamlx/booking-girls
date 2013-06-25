@@ -1,6 +1,6 @@
 class ServicesGirls < ActiveRecord::Migration
   def change
-    create_table :girls_services do |t|
+    create_table :girls_service_menus do |t|
       t.references :girl
       t.references :service_menu
     end

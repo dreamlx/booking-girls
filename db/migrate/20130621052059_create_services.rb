@@ -1,6 +1,6 @@
 class CreateServices < ActiveRecord::Migration
   def change
-    create_table :services do |t|
+    create_table :service_menus do |t|
       t.string :service_name
       t.decimal :service_price
 
