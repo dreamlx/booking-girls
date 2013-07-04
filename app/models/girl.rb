@@ -1,5 +1,6 @@
 class Girl < ActiveRecord::Base
   validates :name, :presence => true
+  after_save :set_relation
   attr_accessible :age, :bwh, :desc, :name, :price, :state,:pics_attributes, :venue_ids, :service_menu_ids
   acts_as_commentable
   has_many :pics, as: :picable
@@ -7,6 +8,9 @@ class Girl < ActiveRecord::Base
   has_many :girl_venues
   has_and_belongs_to_many :service_menus
   has_many :venues, through: :girl_venues
+
+  has_many :company_girls
+  has_one :company, :through => :company_girls
 
   accepts_nested_attributes_for :pics, allow_destroy: true, reject_if: :all_blank
   
@@ -39,6 +43,13 @@ class Girl < ActiveRecord::Base
     event :come_back do
       transition :getoff => :pending
     end    
+  end
+  
+  def set_relation
+    company_girl = CompanyGirl.new
+    company_girl.girl_id = self.id
+    company_girl.company_id = User.current.company.id
+    company_girl.save
   end
   
   def photo

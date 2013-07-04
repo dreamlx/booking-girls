@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   after_filter :put_nav, only: [:index, :purchase, :favor, :uploaded]
-  before_filter :set_locale, :check_locale_show
+  before_filter :set_locale, :check_locale_show, :get_current_company
 		
   def set_locale
     # 可以將 ["en", "zh-TW"] 設定為 VALID_LANG 放到 config/environment.rb 中
@@ -41,5 +41,13 @@ class ApplicationController < ActionController::Base
       next if last_task.nil?
       girl.complete_work if last_task.endtime < Time.now
     end
+  end
+
+  def get_current_company
+    @current_company = current_user.company
+  end
+
+  def set_current_user
+      User.current = current_user
   end
 end

@@ -25,4 +25,14 @@ class User < ActiveRecord::Base
   has_many :uploaded_products, :through => :product_relations, :source => :product, :conditions => "product_relations.rs_name = 'uploaded'"
 
   has_and_belongs_to_many :roles
+  has_one :company, foreign_key: 'admin_id'
+  has_many :venues, through: :company
+  has_many :girls, through: :company
+
+  def self.current
+    Thread.current[:user]
+  end
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
 end

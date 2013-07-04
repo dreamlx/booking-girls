@@ -5,10 +5,10 @@ class HomeController < ApplicationController
   end
 
   def venues
-    @venues = Venue.all
+    @venues = @current_company.venues
    
     if params[:venue].blank?
-      @girls = Girl.paginate(page: params[:page], per_page: 30)
+      @girls = @current_company.girls.paginate(page: params[:page], per_page: 30)
     else
       @girls = Venue.find(params[:venue]).girls.paginate(page: params[:page], per_page: 30)
     end
@@ -17,7 +17,7 @@ class HomeController < ApplicationController
   def services
     @service_menus = ServiceMenu.all
     if params[:service_menu].blank?
-      @girls = Girl.where("state <> ?", "getoff").paginate(page: params[:page], per_page: 30)
+      @girls = @current_company.girls.where("state <> ?", "getoff").paginate(page: params[:page], per_page: 30)
     else
       @girls = ServiceMenu.find(params[:service_menu]).girls.paginate(page: params[:page], per_page: 30)
     end

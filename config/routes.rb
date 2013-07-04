@@ -1,5 +1,8 @@
 Tzk3d::Application.routes.draw do
 
+  resources :companies
+
+
   resources :service_menus
 
 

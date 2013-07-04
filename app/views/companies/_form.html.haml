@@ -1,0 +1,15 @@
+= simple_form_for(@company) do |f|
+  - if @company.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@company.errors.count, "error")
+        prohibited this company from being saved:
+      %ul
+        - @company.errors.full_messages.each do |msg|
+          %li= msg
+  .field= f.input :name
+  .field= f.input :address
+  .field= f.input :phone
+  .field= f.input :admin_id, as: :hidden,  input_html: { value: current_user.id }
+  .actions
+    = f.submit

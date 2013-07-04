@@ -15,5 +15,7 @@
     = f.input :contact, label: "联系人"
   .field
     = f.input :desc, label: "说明"
+  .field
+    = f.input :company_id, as: :hidden,  input_html: { value: @current_company.id }
   .actions
     = f.button :submit

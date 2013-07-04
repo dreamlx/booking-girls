@@ -1,8 +1,9 @@
 class GirlsController < InheritedResources::Base
   before_filter :authenticate_user!, :except =>[:show, :nextpage, :prepage, :booking]
   before_filter :check_girls_state, :only => [:show]
+  before_filter :set_current_user
   def index
-    @girls = Girl.order("created_at desc").paginate(page: params[:page], per_page: 30)
+    @girls = @current_company.girls.order("created_at desc").paginate(page: params[:page], per_page: 30)
   end
   
   def show

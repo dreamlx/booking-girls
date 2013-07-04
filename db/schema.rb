@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625073247) do
+ActiveRecord::Schema.define(:version => 20130704015418) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -69,6 +69,23 @@ ActiveRecord::Schema.define(:version => 20130625073247) do
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "phone"
+    t.integer  "admin_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "company_girls", :force => true do |t|
+    t.integer "company_id"
+    t.integer "girl_id"
+  end
+
+  add_index "company_girls", ["company_id"], :name => "index_company_girls_on_company_id"
+  add_index "company_girls", ["girl_id"], :name => "index_company_girls_on_girl_id"
 
   create_table "dicts", :force => true do |t|
     t.string   "title"
@@ -200,15 +217,16 @@ ActiveRecord::Schema.define(:version => 20130625073247) do
     t.decimal  "service_price"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "company_id"
   end
 
-  create_table "services_tasks", :force => true do |t|
+  create_table "service_menus_tasks", :force => true do |t|
     t.integer "task_id"
-    t.integer "service_id"
+    t.integer "service_menu_id"
   end
 
-  add_index "services_tasks", ["service_id"], :name => "index_tasks_services_on_service_id"
-  add_index "services_tasks", ["task_id"], :name => "index_tasks_services_on_task_id"
+  add_index "service_menus_tasks", ["service_menu_id"], :name => "index_tasks_services_on_service_id"
+  add_index "service_menus_tasks", ["task_id"], :name => "index_tasks_services_on_task_id"
 
   create_table "tasks", :force => true do |t|
     t.datetime "starttime"
@@ -255,6 +273,7 @@ ActiveRecord::Schema.define(:version => 20130625073247) do
     t.text     "desc"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "company_id"
   end
 
 end
