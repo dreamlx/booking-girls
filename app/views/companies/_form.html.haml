@@ -1,3 +1,4 @@
+%label.label= current_user.email
 = simple_form_for(@company) do |f|
   - if @company.errors.any?
     #error_explanation
@@ -10,6 +11,6 @@
   .field= f.input :name
   .field= f.input :address
   .field= f.input :phone
-  .field= f.input :admin_id, as: :hidden,  input_html: { value: current_user.id }
+  
   .actions
     = f.submit

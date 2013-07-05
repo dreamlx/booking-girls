@@ -9,4 +9,6 @@ class Company < ActiveRecord::Base
   has_many :girls, :through => :company_girls
 
   has_many :tasks, :through => :girls
+
+  validates_presence_of :name
 end
