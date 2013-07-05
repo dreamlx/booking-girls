@@ -9,7 +9,9 @@
   %b Phone:
   = @company.phone
 %p
-  %b Admin:
-  = @company.admin.email
+  %b User:
+  %ul
+    - @company.users.each  do |user| 
+      %li= user.email
 = link_to 'Edit', edit_company_path(@company)
 

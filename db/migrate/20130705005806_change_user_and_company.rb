@@ -1,6 +1,6 @@
 class ChangeUserAndCompany < ActiveRecord::Migration
   def change
     add_column :users, :company_id, :integer
-    remove_column :company, :user_id
+    remove_column :companies, :user_id
   end
 end

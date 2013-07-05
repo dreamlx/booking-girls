@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_current_company
-    @current_company = current_user.company
+    @current_company = current_user.company unless current_user.nil?
   end
 
   def set_current_user

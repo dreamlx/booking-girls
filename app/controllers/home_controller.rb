@@ -15,7 +15,7 @@ class HomeController < ApplicationController
   end
 
   def services
-    @service_menus = ServiceMenu.all
+    @service_menus = @current_company.service_menus
     if params[:service_menu].blank?
       @girls = @current_company.girls.where("state <> ?", "getoff").paginate(page: params[:page], per_page: 30)
     else
