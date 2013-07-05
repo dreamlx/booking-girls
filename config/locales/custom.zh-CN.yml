@@ -61,6 +61,7 @@ zh-CN:
       comment: 评论 
       girl: 技师
       service_menu: 服务项目
+      company: 公司
     attributes:
       user:
         email: 邮箱

@@ -4,6 +4,9 @@ add avatar
 change upload file_field
 support progressbar for uploading
 
+整理task逻辑
+整理后台逻辑
+
 #story
 users can see all pic
 

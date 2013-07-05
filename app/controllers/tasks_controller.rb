@@ -3,23 +3,24 @@ class TasksController < ApplicationController
   end
   
   def index
+    this_company = "girl_id in (#{@current_company.girl_ids.join(',')})"
     case params[:by_star]
     when "today"
-      tasks = Task.today.order("created_at DESC")
+      tasks = Task.today.order("created_at DESC").joins(:girl).where(this_company)
     when "yesterday"
-      tasks = Task.yesterday.order("created_at DESC")
+      tasks = Task.yesterday.order("created_at DESC").joins(:girl).where(this_company)
     when "thisweek"
-      tasks = Task.by_week.order("created_at DESC")
+      tasks = Task.by_week.order("created_at DESC").joins(:girl).where(this_company)
     when "thismonth"
-      tasks = Task.by_month.order("created_at DESC")
+      tasks = Task.by_month.order("created_at DESC").joins(:girl).where(this_company)
     when "beforeweek"
       week = Time.now.strftime("%W").to_i - 1
       year = (week != 0 ? Time.now.strftime("%Y").to_i : Time.now.strftime("%Y").to_i - 1)
-      tasks = Task.by_week(week, :year => year).order("created_at DESC")
+      tasks = Task.by_week(week, :year => year).order("created_at DESC").joins(:girl).where(this_company)
     when "thisyear"
-      tasks = Task.by_year.order("created_at DESC")
+      tasks = Task.by_year.order("created_at DESC").joins(:girl).where(this_company)
     else
-      tasks = Task.order("created_at DESC")
+      tasks = Task.order("created_at DESC").joins(:girl).where(this_company)
     end
     @total_prices = tasks.sum(:price)
     @tasks = tasks.paginate(page: params[:page], per_page: 50)
