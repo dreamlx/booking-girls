@@ -37,38 +37,6 @@ class GirlsController < InheritedResources::Base
     @girl.come_back
     redirect_to girl_url(@girl)
   end
-  
-  def prepage
-    id = params[:id].to_i - 1
-    @girl = nil
-    while @girl.nil? and id > 0
-      @girl = Girl.where(["id = ?", id]).first
-      id = id - 1
-    end
-    
-    if !@girl.nil?
-      redirect_to girl_url(@girl)
-    else
-      redirect_to root_url
-    end
-  end
-  
-  def nextpage
-    id = params[:id].to_i + 1
-    @girl = nil
-    last_id = Girl.last.id
-    while @girl.nil? and id <= last_id
-      @girl = Girl.where(["id = ?", id]).first
-      id = id + 1
-    end
-    
-    if !@girl.nil?
-      redirect_to girl_url(@girl)
-    else
-      redirect_to root_url
-    end
-  end
-
 
   # comments
   def comments

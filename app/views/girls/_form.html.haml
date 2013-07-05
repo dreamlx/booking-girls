@@ -9,7 +9,6 @@
     = f.association :service_menus, collection: @current_company.service_menus, label_method: :name_with_price, value_method: :id, as: :check_boxes, label: "服务内容"
     = f.input :age
     = f.input :bwh
-    = f.input :price
     = f.input :desc
     = f.input :state, priority: [:pending], collection: [['待钟','pending'], ['休假','getoff']]
     %hr

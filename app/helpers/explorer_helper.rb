@@ -1,2 +1,0 @@
-module ExplorerHelper
-end

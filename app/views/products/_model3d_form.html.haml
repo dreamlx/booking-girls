@@ -1,8 +1,0 @@
-= f.fields_for :model3ds do |m|
-  %p
-    - if m.object.nil? || m.object.new_record?
-      %span= m.file_field :modelfile, pattern: "(.*)+\.(stl)$"
-    - else
-      %span= m.text_field :modelfile, size: 300, disabled: true, title: "modelfile.name"
-    %span.span2= m.link_to_remove t("views.remove"), class: "btn btn-warning"
-= f.link_to_add t("views.Upload ModelFile"), :model3ds, class: "btn btn-primary btn-smaller"

@@ -17,8 +17,6 @@
       %span.label.label-info
         = "年龄：#{@girl.age}"
       %span.label.label-info
-        = "价格：#{@girl.price}"
-      %span.label.label-info
         = "三围：#{@girl.bwh}" 
       %span.label{ class: @girl.state == 'working' ? "label-important" : "label-warning" }
         = "状态：" + t(".#{@girl.state}") 

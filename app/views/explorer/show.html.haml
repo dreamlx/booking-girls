@@ -1,7 +1,0 @@
-.row-fluid
-  %h3.category= t("category.#{@category.name}")
-  %ul.thumbnails
-    - @products.each do |product|
-      %li.product-box.span4
-        = render partial: '/share/product', object: product
-  = will_paginate @products
