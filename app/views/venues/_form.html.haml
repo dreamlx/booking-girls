@@ -19,6 +19,6 @@
     = f.input :company_id, as: :hidden,  input_html: { value: @current_company.id }
   .field
     %p= f.input :avatar, as: :file, :label => "场所图片"
-    %p= image_tag @venue.avatar.url unless @venue.avatar.nil?
+    %p= image_tag @venue.avatar.url unless @venue.avatar.url.nil?
   .actions
     = f.button :submit

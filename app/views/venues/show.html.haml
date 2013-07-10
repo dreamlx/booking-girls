@@ -13,7 +13,7 @@
   = @venue.desc
 %p
   %b 图片：
-  %p= image_tag @venue.avatar.url unless @venue.avatar.nil?
+  %p= image_tag @venue.avatar.url unless @venue.avatar.url.nil?
 = link_to 'Edit', edit_venue_path(@venue)
 |
 \#{link_to 'Back', venues_path}

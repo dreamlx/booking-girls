@@ -7,7 +7,7 @@
   = @service_menu.service_price
 %p
   %b 服务图片：
-  %p= image_tag @service_menu.avatar.url unless @service_menu.avatar.nil?
+  %p= image_tag @service_menu.avatar.url unless @service_menu.avatar.url.nil?
 = link_to '编辑', edit_service_menu_path(@service_menu)
 |
 \#{link_to '返回', service_menus_path}
