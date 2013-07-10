@@ -1,4 +1,8 @@
 $(function() {
+  $("#pageback").click(function(){
+    history.back();
+  });
+  
   $(".check_boxes").click(function(){
     var checkedVals = $('.check_boxes:checkbox:checked').map(function() {
         return Number(this.value);

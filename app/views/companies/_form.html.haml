@@ -13,7 +13,7 @@
   .field= f.input :phone
   .field
     %p= f.input :avatar, as: :file, :label => "公司图片"
-    %p= image_tag @company.avatar.url
+    %p= image_tag @company.avatar.url unless @company.avatar.nil?
   
   .actions
     = f.submit

@@ -2,14 +2,15 @@
 - @lasttime = @girl.tasks.count > 0 ? @girl.tasks.last.endtime.localtime.to_i : 0
 #girl-show{ "data-current-id" => @current_id, "data-next-id" => @next_id, "data-pre-id" => @pre_id }
   .container-fluid
+    %span#pageback= link_to "返回", '#', class: "btn-large btn"
     -if @girl.state == 'working'
       #defaultCountdown{ style: 'margin-bottom:20px;', rel: @lasttime }
     -else
       -if current_user.admin?
         - if @girl.state == 'pending'
-          = link_to "预约", booking_girl_path(@girl), class: "btn-large btn", method: 'PUT'
+          %span= link_to "预约", booking_girl_path(@girl), class: "btn-large btn", method: 'PUT'
         - else
-          = link_to "取消预定", booking_girl_path(@girl), class: "btn", method: 'PUT'  
+          %span= link_to "取消预定", booking_girl_path(@girl), class: "btn-large btn", method: 'PUT'  
     %hr
     .shop-info-text
       %span.label.label-info

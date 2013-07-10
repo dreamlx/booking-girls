@@ -1,9 +1,23 @@
-%h1 查看技师
-.row-fluid
-  %ul.nav.nav-pills
-    %li= link_to "全部", venues_home_index_path, class: "btn btn-large"
-    - @venues.each do |venue|
-      %li= link_to venue.name, venues_home_index_path(venue: venue), class: "btn btn-large"
-= render "girls_list"
+- if params[:venue].nil? 
+  %h1 按技师查询
+  %hr
+  .row-fluid
+    %ul.thumbnails
+      - @venues.each do |venue|
+        %li.span4
+          .thumbnail
+            = link_to image_tag(venue.avatar.thumbnail.url), venues_home_index_path(venue: venue), class: "btn btn-large"
+            .caption
+              %h3= venue.name
+              %p= venue.address
+              %p= venue.contact
+              %p= venue.desc
+- else
+  %h1
+    = Venue.find(params[:venue]).name
+    = link_to "返回", venues_home_index_path, class: "btn btn-large"
+  %hr           
+  = render "girls_list" 
+
 
 

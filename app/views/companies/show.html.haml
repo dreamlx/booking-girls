@@ -10,7 +10,7 @@
   = @company.phone
 %p
   %b 首页图片:
-  %p= image_tag @company.avatar.url
+  %p= image_tag @company.avatar.url unless @company.avatar.nil?
 %p
   %b User:
   %ul

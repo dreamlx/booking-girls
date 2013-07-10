@@ -13,5 +13,8 @@
     = f.input :service_price, label: "服务价格"
   .field
     = f.input :company_id, as: :hidden,  input_html: { value: @current_company.id }
+  .field
+    %p= f.input :avatar, as: :file, :label => "服务图片"
+    %p= image_tag @service_menu.avatar.url unless @service_menu.avatar.nil?
   .actions
     = f.submit
