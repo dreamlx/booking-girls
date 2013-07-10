@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
-  attr_accessible :address, :name, :phone
+ 	mount_uploader :avatar, AvatarUploader
+  attr_accessible :address, :name, :phone, :avatar
   has_many :users
   
   has_many :venues

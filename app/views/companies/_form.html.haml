@@ -11,6 +11,9 @@
   .field= f.input :name
   .field= f.input :address
   .field= f.input :phone
+  .field
+    %p= f.input :avatar, as: :file, :label => "公司图片"
+    %p= image_tag @company.avatar.url
   
   .actions
     = f.submit

@@ -7,7 +7,7 @@
       %ul{:class => "nav", role: "navigation"}                
         - if user_signed_in?
           %li
-            = link_to "按店铺", venues_home_index_path unless current_user.girls.blank?
+            = link_to "按技师", venues_home_index_path unless current_user.girls.blank?
           %li
             = link_to "按服务", services_home_index_path unless current_user.girls.blank?
           - if current_user.admin?

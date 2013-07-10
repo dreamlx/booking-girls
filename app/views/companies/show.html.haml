@@ -1,13 +1,16 @@
 %p#notice= notice
 %p
-  %b Name:
+  %b 公司名称:
   = @company.name
 %p
-  %b Address:
+  %b 公司地址:
   = @company.address
 %p
-  %b Phone:
+  %b 联系电话:
   = @company.phone
+%p
+  %b 首页图片:
+  %p= image_tag @company.avatar.url
 %p
   %b User:
   %ul
