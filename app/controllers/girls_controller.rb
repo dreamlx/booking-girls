@@ -20,6 +20,15 @@ class GirlsController < InheritedResources::Base
     gon.services = ServiceMenu.all.to_json
   end
   
+    def update
+    @girl         = Girl.find(params[:id])
+    if @girl.save
+      redirect_to girl_url(@girl)
+    else
+      render :edit
+    end
+  end
+
   def leave
     @girl = Girl.find(params[:id])
     @girl.get_off

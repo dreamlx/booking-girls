@@ -6,9 +6,9 @@ class Company < ActiveRecord::Base
   has_many :service_menus
 
   has_many :company_girls
-  has_many :girls, :through => :company_girls
+  has_many :girls, :through => :company_girls, :uniq => true
 
-  has_many :tasks, :through => :girls
+  has_many :tasks, :through => :girls, :uniq => true
 
   validates_presence_of :name
 end
