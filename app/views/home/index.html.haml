@@ -10,4 +10,4 @@
           .hero-unit
             = link_to "按服务查询", services_home_index_path 
   .hero-unit
-    %center= image_tag @current_company.avatar.url
+    %center= image_tag @current_company.avatar.url unless @current_company.avatar.nil?
