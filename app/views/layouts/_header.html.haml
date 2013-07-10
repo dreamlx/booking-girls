@@ -2,7 +2,7 @@
   .navbar-inner
     .container
       %a.brand{href: root_path}
-        技师点单系统
+        点单服务
         = " - " + Venue.find(params[:venue_id]).name unless params[:venue_id].blank?
       %ul{:class => "nav", role: "navigation"}                
         - if user_signed_in?

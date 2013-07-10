@@ -8,6 +8,10 @@
       - unless @current_company.service_menus.blank?
         .span6
           .hero-unit
-            = link_to "按服务查询", services_home_index_path 
+            = link_to "按服务查询", services_home_index_path
+
   .hero-unit
-    %center= image_tag @current_company.avatar.url unless @current_company.avatar.nil?
+    - unless @current_company.nil?   
+      %center= image_tag @current_company.avatar.url unless @current_company.avatar.nil?
+    - else
+      %h3 欢迎访问下单啦服务平台
