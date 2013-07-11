@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130710121554) do
+ActiveRecord::Schema.define(:version => 20130711083350) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -95,13 +95,6 @@ ActiveRecord::Schema.define(:version => 20130710121554) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "girl_venues", :force => true do |t|
-    t.integer  "girl_id"
-    t.integer  "venue_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "girls", :force => true do |t|
     t.string   "name"
     t.integer  "age"
@@ -120,6 +113,13 @@ ActiveRecord::Schema.define(:version => 20130710121554) do
 
   add_index "girls_service_menus", ["girl_id"], :name => "index_girls_services_on_girl_id"
   add_index "girls_service_menus", ["service_menu_id"], :name => "index_girls_services_on_service_id"
+
+  create_table "girls_venues", :force => true do |t|
+    t.integer  "girl_id"
+    t.integer  "venue_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "model3ds", :force => true do |t|
     t.string   "title"
@@ -219,6 +219,7 @@ ActiveRecord::Schema.define(:version => 20130710121554) do
     t.datetime "updated_at",    :null => false
     t.integer  "company_id"
     t.string   "avatar"
+    t.text     "desc"
   end
 
   create_table "service_menus_tasks", :force => true do |t|

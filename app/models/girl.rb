@@ -5,9 +5,9 @@ class Girl < ActiveRecord::Base
   acts_as_commentable
   has_many :pics, as: :picable
   has_many :tasks
-  has_many :girl_venues
+
   has_and_belongs_to_many :service_menus
-  has_many :venues, through: :girl_venues
+  has_and_belongs_to_many :venues
 
   has_many :company_girls
   has_one :company, :through => :company_girls
