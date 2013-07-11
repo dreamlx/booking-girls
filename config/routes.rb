@@ -40,6 +40,7 @@ Tzk3d::Application.routes.draw do
     collection do
       get :services
       get :venues
+      get :girls
     end
   end
 end

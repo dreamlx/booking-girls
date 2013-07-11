@@ -1,10 +1,10 @@
 - if params[:venue].nil? 
-  %h1 按技师查询
+  %h1 按门店查询
   %hr
   .row-fluid
     %ul.thumbnails
       - @venues.each do |venue|
-        %li.span4
+        %li
           .thumbnail
             = link_to image_tag(venue.avatar.thumbnail.url), venues_home_index_path(venue: venue) unless venue.avatar.url.nil?
             .caption

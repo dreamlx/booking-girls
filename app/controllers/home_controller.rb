@@ -22,5 +22,9 @@ class HomeController < ApplicationController
       @girls = ServiceMenu.find(params[:service_menu]).girls.paginate(page: params[:page], per_page: 30)
     end
   end
+
+  def girls
+    @girls = @current_company.girls.paginate(page: params[:page], per_page: 30)
+  end
   
 end

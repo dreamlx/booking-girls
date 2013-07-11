@@ -4,7 +4,7 @@
       - unless @current_company.venues.blank?
         .span6
           .hero-unit
-            = link_to "按店铺查询", venues_home_index_path 
+            = link_to "按技师查询", venues_home_index_path 
       - unless @current_company.service_menus.blank?
         .span6
           .hero-unit
@@ -14,4 +14,4 @@
     - unless @current_company.nil?   
       %center= image_tag @current_company.avatar.url unless @current_company.avatar.url.nil?
     - else
-      %h3 欢迎访问下单啦服务平台
+      %h3 欢迎访问~下单么~服务平台

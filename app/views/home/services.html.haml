@@ -4,7 +4,7 @@
   .row-fluid
     %ul.thumbnails
       - @service_menus.each do |service_menu|
-        %li.span4
+        %li
           .thumbnail
             = link_to image_tag(service_menu.avatar.thumbnail.url), services_home_index_path(service_menu: service_menu) unless service_menu.avatar.url.nil?
             .caption
