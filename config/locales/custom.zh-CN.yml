@@ -49,7 +49,7 @@ zh-CN:
     comments: 评论
     add_favor: 加入最爱
     remove_favor: 移出最爱
-    add_pictures: 添加图片
+    add_pictures: 添加更多图片
     can_not_save: 无法保存
     "Upload ModelFile": 上传模型
     #"Download Model"
@@ -61,8 +61,12 @@ zh-CN:
       comment: 评论 
       girl: 技师
       service_menu: 服务项目
-      company: 公司
+      company: 企业
     attributes:
+      company:
+        name: 企业名称
+        address: 企业地址
+        phone: 联系电话
       user:
         email: 邮箱
         password: 密码

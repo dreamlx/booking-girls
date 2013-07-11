@@ -24,10 +24,13 @@
     .row-fluid
       .span9{ class: @girl.state == 'getoff' ? "gray" : "" }
         %ul.thumbnails
+          %li.span9
+            %a{ href: @girl.avatar.original.url, class: "fancybox thumbnail", rel: "girls-group" }
+              = image_tag @girl.avatar.normal.url
           - @girl.pics.each_with_index do |pic, index|
-            %li.span9
+            %li.span4
               %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "girls-group" }
-                = image_tag pic.photo.normal.url
+                = image_tag pic.photo.thumbnail.url
       .span3
         = render "leftbar" 
   %p
@@ -35,6 +38,10 @@
       技师介绍：
       = @girl.name  
     #girl-desc= @girl.desc
+    %p.label 服务项目
+    %p
+      - @girl.service_menus.each do |service_menu|
+        = link_to service_menu.service_name, service_menu_path(service_menu), class: "btn btn-warning"
     %h1.comments
       = t("views.comments")
     .comments-container

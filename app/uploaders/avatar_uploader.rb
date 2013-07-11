@@ -51,7 +51,17 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  version :thumb do
+     process :resize_to_fill => [100, 100]
+  end
+  
   version :thumbnail do
      process :resize_to_fill => [300, 200]
   end
+  
+  version :normal do
+     process :resize_to_fill => [600, 400]
+  end
+  
+  version :original
 end

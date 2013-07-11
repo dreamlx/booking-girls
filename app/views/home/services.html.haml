@@ -6,7 +6,7 @@
       - @service_menus.each do |service_menu|
         %li
           .thumbnail
-            = link_to image_tag(service_menu.avatar.thumbnail.url), services_home_index_path(service_menu: service_menu) unless service_menu.avatar.url.nil?
+            = link_to image_tag(service_menu.avatar.thumbnail.url), service_menu_path(service_menu) unless service_menu.avatar.url.nil?
             .caption
               %h3= service_menu.service_name
               %p= service_menu.service_price

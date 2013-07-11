@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711083350) do
+ActiveRecord::Schema.define(:version => 20130711124452) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -79,14 +79,6 @@ ActiveRecord::Schema.define(:version => 20130711083350) do
     t.string   "avatar"
   end
 
-  create_table "company_girls", :force => true do |t|
-    t.integer "company_id"
-    t.integer "girl_id"
-  end
-
-  add_index "company_girls", ["company_id"], :name => "index_company_girls_on_company_id"
-  add_index "company_girls", ["girl_id"], :name => "index_company_girls_on_girl_id"
-
   create_table "dicts", :force => true do |t|
     t.string   "title"
     t.string   "category"
@@ -104,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20130711083350) do
     t.string   "state"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "avatar"
   end
 
   create_table "girls_service_menus", :force => true do |t|
@@ -113,13 +106,6 @@ ActiveRecord::Schema.define(:version => 20130711083350) do
 
   add_index "girls_service_menus", ["girl_id"], :name => "index_girls_services_on_girl_id"
   add_index "girls_service_menus", ["service_menu_id"], :name => "index_girls_services_on_service_id"
-
-  create_table "girls_venues", :force => true do |t|
-    t.integer  "girl_id"
-    t.integer  "venue_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "model3ds", :force => true do |t|
     t.string   "title"
@@ -278,6 +264,11 @@ ActiveRecord::Schema.define(:version => 20130711083350) do
     t.datetime "updated_at", :null => false
     t.integer  "company_id"
     t.string   "avatar"
+  end
+
+  create_table "work_relationships", :force => true do |t|
+    t.integer "girl_id"
+    t.integer "venue_id"
   end
 
 end

@@ -6,7 +6,7 @@
       - @venues.each do |venue|
         %li
           .thumbnail
-            = link_to image_tag(venue.avatar.thumbnail.url), venues_home_index_path(venue: venue) unless venue.avatar.url.nil?
+            = link_to image_tag(venue.avatar.thumbnail.url), venue_path(venue) unless venue.avatar.url.nil?
             .caption
               %h3= venue.name
               %p= venue.address

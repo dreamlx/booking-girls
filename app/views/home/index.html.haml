@@ -1,17 +1,19 @@
 .container
+  .hero-unit
+    - if @current_company.nil? or  @current_company.avatar.url.nil?
+      %h3 欢迎访问~下单么~服务平台
+    - else
+      %center= image_tag @current_company.avatar.url 
+
   - unless @current_company.nil?
     .row
       - unless @current_company.venues.blank?
-        .span6
+        .span
           .hero-unit
-            = link_to "按技师查询", venues_home_index_path 
+            = link_to "按门店查询", venues_home_index_path 
       - unless @current_company.service_menus.blank?
-        .span6
+        .span
           .hero-unit
             = link_to "按服务查询", services_home_index_path
 
-  .hero-unit
-    - unless @current_company.nil?   
-      %center= image_tag @current_company.avatar.url unless @current_company.avatar.url.nil?
-    - else
-      %h3 欢迎访问~下单么~服务平台
+      

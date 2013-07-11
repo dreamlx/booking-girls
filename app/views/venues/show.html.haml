@@ -1,4 +1,13 @@
+= link_to "返回", venues_home_index_path, class: "btn btn-large"
+%hr
 %p#notice= notice
+%p= image_tag @venue.avatar.normal.url unless @venue.avatar.url.nil?
+%hr
+%ul.thumbnails
+  - @venue.pics.each_with_index do |pic, index|
+    %li
+      %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "girls-group" }
+        = image_tag pic.photo.thumb.url  
 %p
   %b 店名:
   = @venue.name
@@ -11,9 +20,11 @@
 %p
   %b 说明:
   = @venue.desc
-%p
-  %b 图片：
-  %p= image_tag @venue.avatar.url unless @venue.avatar.url.nil?
-= link_to 'Edit', edit_venue_path(@venue)
-|
-\#{link_to 'Back', venues_path}
+
+= render "/home/girls_list" 
+
+- if current_user.admin
+  = link_to 'Edit', edit_venue_path(@venue)
+  |
+  \#{link_to 'Back', venues_path}
+

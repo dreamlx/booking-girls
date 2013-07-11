@@ -22,7 +22,7 @@ class GirlsController < InheritedResources::Base
   
     def update
     @girl         = Girl.find(params[:id])
-    if @girl.save
+    if @girl.update_attributes(params[:girl])
       redirect_to girl_url(@girl)
     else
       render :edit

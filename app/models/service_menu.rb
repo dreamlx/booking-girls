@@ -1,5 +1,5 @@
 class ServiceMenu < ActiveRecord::Base
-  attr_accessible :service_name, :service_price, :company_id, :avatar
+  attr_accessible :service_name, :service_price, :company_id, :avatar, :desc, :pics_attributes
   validates_presence_of :service_name, :service_price
   validates_numericality_of :service_price
   mount_uploader :avatar, AvatarUploader
@@ -7,6 +7,9 @@ class ServiceMenu < ActiveRecord::Base
   has_and_belongs_to_many :tasks
   has_and_belongs_to_many :girls
   belongs_to :company
+
+  has_many :pics, as: :picable
+  accepts_nested_attributes_for :pics, allow_destroy: true, reject_if: :all_blank
 
   def name_with_price
     if !self.service_price.nil? and !self.service_name.nil?

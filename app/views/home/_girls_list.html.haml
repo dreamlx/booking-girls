@@ -1,3 +1,4 @@
+%h3 相关技师
 %ul.thumbnails
   - @girls.each do |girl|
     %li.product-box.span4
@@ -11,7 +12,7 @@
             = "状态：" + t("girls.show.#{girl.state}")        
         %p.thumbnail
           %a{ :href => girl_path(girl), :class => [girl.state == 'getoff' ? "gray" : ""] }
-            = image_tag(girl.pics.first.photo.thumbnail.url) unless girl.pics.blank?
+            = image_tag(girl.avatar.thumbnail.url) unless girl.avatar.url.nil?
 
 = will_paginate @girls
 

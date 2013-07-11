@@ -6,8 +6,7 @@ class Company < ActiveRecord::Base
   has_many :venues
   has_many :service_menus
 
-  has_many :company_girls
-  has_many :girls, :through => :company_girls, :uniq => true
+  has_many :girls, :through => :venues
 
   has_many :tasks, :through => :girls, :uniq => true
 

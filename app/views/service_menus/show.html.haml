@@ -1,13 +1,27 @@
+= link_to "返回", services_home_index_path, class: "btn btn-large"
+
 %p#notice= notice
-%p
+
+%p= image_tag @service_menu.avatar.normal.url unless @service_menu.avatar.url.nil?
+%hr
+%ul.thumbnails
+  - @service_menu.pics.each_with_index do |pic, index|
+    %li.span4
+      %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "girls-group" }
+        = image_tag pic.photo.thumbnail.url  
+%p 
   %b 服务名称:
   = @service_menu.service_name
-%p
+%p 
   %b 服务价格:
   = @service_menu.service_price
-%p
-  %b 服务图片：
-  %p= image_tag @service_menu.avatar.url unless @service_menu.avatar.url.nil?
-= link_to '编辑', edit_service_menu_path(@service_menu)
-|
-\#{link_to '返回', service_menus_path}
+%p 
+  %b 服务说明：
+  %p= @service_menu.desc
+
+= render "/home/girls_list" 
+  
+- if current_user.admin
+  = link_to '编辑', edit_service_menu_path(@service_menu) 
+  |
+  \#{link_to '返回', service_menus_path}  

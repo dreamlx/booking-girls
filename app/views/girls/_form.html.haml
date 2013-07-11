@@ -11,6 +11,10 @@
     = f.input :bwh
     = f.input :desc
     = f.input :state, priority: [:pending], collection: [['待钟','pending'], ['休假','getoff']]
+
+  .field
+    %p= f.input :avatar, as: :file, :label => "服务图片"
+    %p= image_tag @girl.avatar.url unless @girl.avatar.url.nil?
     %hr
     = f.simple_fields_for :pics do |p|
       %p.fields
@@ -19,7 +23,6 @@
         - else
           %span= image_tag p.object.photo.thumb.url
           %span.span2= p.link_to_remove t("views.remove"), class: "btn btn-warning"
-        
 
     = f.link_to_add t("views.add_pictures"), :pics, class: "btn btn-primary btn-smaller"
   .actions
