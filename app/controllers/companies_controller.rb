@@ -1,4 +1,5 @@
 class CompaniesController < InheritedResources::Base
+  before_filter :authenticate_user!
   def create
     @company = Company.new(params[:company])
     if @company.save

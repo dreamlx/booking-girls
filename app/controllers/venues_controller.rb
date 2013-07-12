@@ -1,4 +1,5 @@
 class VenuesController < InheritedResources::Base
+  before_filter :authenticate_user!
   def index
     @venues = @current_company.venues
   end

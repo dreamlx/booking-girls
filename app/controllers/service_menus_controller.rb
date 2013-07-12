@@ -1,4 +1,5 @@
 class ServiceMenusController < InheritedResources::Base
+  before_filter :authenticate_user!
   def index
     @service_menus = @current_company.service_menus
   end

@@ -50,15 +50,9 @@ namespace :deploy do
   task :symlink_shared, :roles => :app do
     #run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "rm -rf #{current_path}/public/uploads"
-    run "ln -sf #{shared_path}/uploads #{current_path}/public/uploads"
+    run "ln -sf #{shared_path}/uploads #{current_path}/public/"
   end
   
-  task :change_db , :roles => :app do
-    run "mv #{release_path}/config/database.yml #{release_path}/config/database.yml.orig"
-    run "mv #{release_path}/config/database.yml.server #{release_path}/config/database.yml"
-  end
-
-
   task :precompile, :roles => :web do  
     run "cd #{current_path} && #{rake} RAILS_ENV=production assets:precompile"  
   end  
