@@ -10,8 +10,6 @@
             .caption
               %h3= venue.name
               %p= venue.address
-              %p= venue.contact
-              %p= venue.desc
 - else
   %h1
     = Venue.find(params[:venue]).name

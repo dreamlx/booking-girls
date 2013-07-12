@@ -6,7 +6,7 @@
 %ul.thumbnails
   - @venue.pics.each_with_index do |pic, index|
     %li
-      %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "girls-group" }
+      .thumbnail
         = image_tag pic.photo.thumbnail.url  
 %p
   %b 店名:
