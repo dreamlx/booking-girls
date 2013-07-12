@@ -14,7 +14,8 @@
       = link_to "上班", atwork_girl_path(@girl), class: "btn btn-large", method: 'PUT'
   - when 'booked'
     = link_to "取消预定", booking_girl_path(@girl), class: "btn btn-large", method: 'PUT'
-    %p= render '/tasks/form'
+    - if current_user.admin?
+      %p= render '/tasks/form'
 
   - if not @girl.tasks.last.nil? and @girl.state == 'working'
     %p
