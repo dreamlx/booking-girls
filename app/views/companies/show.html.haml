@@ -12,7 +12,8 @@
   %b 首页图片:
   %p= image_tag @company.avatar.url unless @company.avatar.url.nil?
 %p
-  %b User:
+  %b 用户帐号管理:
+  %p= link_to "创建用户",new_user_registration_path, class: "btn"
   %ul
     - @company.users.each  do |user| 
       %li= user.email

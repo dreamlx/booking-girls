@@ -7,11 +7,11 @@
       %ul{:class => "nav", role: "navigation"}                
         - if user_signed_in?
           %li
-            = link_to "按技师", girls_home_index_path unless current_user.girls.blank?
+            = link_to "按技师", girls_home_index_path unless @current_company.girls.blank?
           %li
-            = link_to "按门店", venues_home_index_path unless current_user.girls.blank?
+            = link_to "按门店", venues_home_index_path unless @current_company.girls.blank?
           %li
-            = link_to "按服务", services_home_index_path unless current_user.girls.blank?
+            = link_to "按服务", services_home_index_path unless @current_company.girls.blank?
           - if current_user.admin?
             %li
               = link_to '技师资料', girls_path if !@current_company.nil? and !@current_company.venues.blank?

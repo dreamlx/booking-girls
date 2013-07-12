@@ -37,7 +37,7 @@
     %h3 
       技师介绍：
       = @girl.name  
-    #girl-desc= @girl.desc
+    #pre= @girl.desc
     %p.label 服务项目
     %p
       - @girl.service_menus.each do |service_menu|
