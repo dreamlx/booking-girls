@@ -19,6 +19,7 @@
 //= require jquery_nested_form
 
 $(function () {
+  $("#toTop").scrollToTop(200);
 	var austDay = new Date();
   //alert(austDay);
 	sec = $('#defaultCountdown').attr("rel");
