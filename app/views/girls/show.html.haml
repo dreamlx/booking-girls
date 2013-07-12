@@ -1,55 +1,52 @@
-
 - @lasttime = @girl.tasks.count > 0 ? @girl.tasks.last.endtime.localtime.to_i : 0
 #girl-show{ "data-current-id" => @current_id, "data-next-id" => @next_id, "data-pre-id" => @pre_id }
-  .container-fluid
-    %span#pageback= link_to "返回", '#', class: "btn-large btn"
-    -if @girl.state == 'working'
-      #defaultCountdown{ style: 'margin-bottom:20px;', rel: @lasttime }
-    -else
-      -if current_user.admin?
-        - if @girl.state == 'pending'
-          %span= link_to "预约", booking_girl_path(@girl), class: "btn-large btn", method: 'PUT'
-        - else
-          %span= link_to "取消预定", booking_girl_path(@girl), class: "btn-large btn", method: 'PUT'  
-    %hr
-    .shop-info-text
-      %span.label.label-info
-        = "姓名：#{@girl.name}"
-      %span.label.label-info
-        = "年龄：#{@girl.age}"
-      %span.label.label-info
-        = "三围：#{@girl.bwh}" 
-      %span.label{ class: @girl.state == 'working' ? "label-important" : "label-warning" }
-        = "状态：" + t(".#{@girl.state}") 
-    .row-fluid
-      .span9{ class: @girl.state == 'getoff' ? "gray" : "" }
-        %ul.thumbnails
-          %li.span9
-            %a{ href: @girl.avatar.original.url, class: "fancybox thumbnail", rel: "girls-group" }
-              = image_tag @girl.avatar.normal.url
-          - @girl.pics.each_with_index do |pic, index|
-            %li.span4
-              %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "girls-group" }
-                = image_tag pic.photo.thumbnail.url
-      .span3
-        = render "leftbar" 
+
+.container-fluid
+  -if @girl.state == 'working'
+    #defaultCountdown{ style: 'margin-bottom:20px;', rel: @lasttime }
+  %span#pageback= link_to "返回", '#', class: "btn-large btn"
+  = render "tasks"      
+  %hr
+  .shop-info-text    
+    %span.label.label-info
+      = "姓名：#{@girl.name}"
+    %span.label.label-info
+      = "年龄：#{@girl.age}" 
+    %span.label{ class: @girl.state == 'working' ? "label-important" : "label-warning" }
+      = "状态：" + t(".#{@girl.state}") 
+    %span
+      .label 所属门店:
+      - @girl.venues.each do |venue|
+        .label= venue.name
+      
   %p
-    %h3 
-      技师介绍：
-      = @girl.name  
-    #pre= @girl.desc
-    %p.label 服务项目
+    %a{ href: @girl.avatar.original.url, class: "fancybox thumbnail", rel: "girls-group" }
+      = image_tag @girl.avatar.normal.url
+  .row-fluid
+    .span{ class: @girl.state == 'getoff' ? "gray" : "" }
+      %ul.thumbnails
+        - @girl.pics.each_with_index do |pic, index|
+          %li
+            %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "girls-group" }
+              = image_tag pic.photo.thumbnail.url
+
+%p
+  %h3 
+    技师介绍：
+    = @girl.name  
+  #pre= @girl.desc
+  %p.label 服务项目
+  %p
+    - @girl.service_menus.each do |service_menu|
+      = link_to service_menu.service_name, service_menu_path(service_menu), class: "btn btn-warning"
+  %h1.comments
+    = t("views.comments")
+  .comments-container
     %p
-      - @girl.service_menus.each do |service_menu|
-        = link_to service_menu.service_name, service_menu_path(service_menu), class: "btn btn-warning"
-    %h1.comments
-      = t("views.comments")
-    .comments-container
-      %p
-        = render "/comments/leave_comment"
-      %hr
-      - unless @girl.comments.empty?
-        = render partial: "/comments/comment", collection: @girl.comments
+      = render "/comments/leave_comment"
+    %hr
+    - unless @girl.comments.empty?
+      = render partial: "/comments/comment", collection: @girl.comments
 
   
 

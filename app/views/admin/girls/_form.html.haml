@@ -1,0 +1,13 @@
+-# encoding: UTF-8
+= semantic_form_for @girl do |f|
+  = f.inputs name: "Basic" do
+    = f.input :name
+    = f.input :age 
+    = f.input :bwh
+    = f.input :desc
+    = f.input :venues, :as => :select, collection:Venue.all
+    = f.input :service_menus, :as => :check_boxes, collection: Hash[ServiceMenu.all.map{ |s| [s.service_name, s.id] } ]
+
+    = f.input :state, priority: [:pending], collection: [['待钟','pending'], ['休假','getoff']]
+
+    = f.actions

@@ -4,13 +4,12 @@
   
   .form-inputs
     -# 时间需要处理
-    = f.association :girl, readonly: true
     = f.input :intermediary
-    = f.input :price
+    = f.input :price, input_html: {  readonly: "readonly", type: "number" }
     = f.input :title
     = f.input :girl_id, :as => "hidden", input_html: { value: @girl.id }
     = f.association :service_menus, as: :check_boxes, collection: @girl.service_menus, label_method: :service_name
 
   .actions
     %hr
-    = f.submit "上钟", :class => "btn btn-warning" 
+    %p= f.submit "开始服务", :class => "btn btn-warning btn-large" 

@@ -1,0 +1,27 @@
+- if user_signed_in? 
+  - case @girl.state
+  - when 'pending'
+    /= link_to "上钟", girl_tasks_path(@girl), class: "btn", method: 'POST'
+    = link_to "预约", booking_girl_path(@girl), class: "btn-waring btn btn-large", method: 'PUT'
+    - if current_user.admin?          
+      = link_to "休假", leave_girl_path(@girl), class: "btn btn-large", method: 'PUT' 
+  - when 'working'
+    - if current_user.admin?
+      = link_to "服务加时", girl_task_path(@girl), class: "btn btn-large", method: 'PUT'
+      = link_to "提前结束", girl_task_path(@girl), class: "btn btn-large", method: 'DELETE'
+  - when 'getoff'
+    - if current_user.admin?
+      = link_to "上班", atwork_girl_path(@girl), class: "btn btn-large", method: 'PUT'
+  - when 'booked'
+    = link_to "取消预定", booking_girl_path(@girl), class: "btn btn-large", method: 'PUT'
+    %p= render '/tasks/form'
+
+  - if not @girl.tasks.last.nil? and @girl.state == 'working'
+    %p
+      .label.label-warning 
+        [开始时间]
+        = @girl.tasks.last.starttime.localtime.strftime("%H:%M")
+      
+      .label.label-warning 
+        [结束时间]
+        = @girl.tasks.last.endtime.localtime.strftime("%H:%M")  

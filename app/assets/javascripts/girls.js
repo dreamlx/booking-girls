@@ -1,4 +1,6 @@
 $(function() {
+  $("a.fancybox").fancybox();
+  
   $("#pageback").click(function(){
     history.back();
   });
@@ -26,4 +28,3 @@ $(function() {
     $("#task_title").val(service_detial);
   });
 });
-

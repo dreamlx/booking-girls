@@ -39,6 +39,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass'
   gem 'font-awesome-sass-rails', '~> 3.0.2.2'
+  gem 'fancybox2-rails', '~> 0.2.4'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem "therubyracer", :require => 'v8'
