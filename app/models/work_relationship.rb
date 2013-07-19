@@ -1,6 +1,6 @@
 class WorkRelationship < ActiveRecord::Base
-  attr_accessible :girl_id, :venue_id
+  attr_accessible :technician_id, :venue_id
 
-  belongs_to :girl
+  belongs_to :technician
   belongs_to :venue
 end

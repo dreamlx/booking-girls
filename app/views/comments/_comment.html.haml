@@ -4,5 +4,5 @@
   .comment-title
     = comment.title
   .comment-action
-    %span.right= link_to t("views.remove"), remove_comment_girl_path(comment_id: comment.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-small' if current_user
+    %span.right= link_to t("views.remove"), remove_comment_technician_path(comment_id: comment.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-small' if current_user
     %span.date= comment.created_at.ctime

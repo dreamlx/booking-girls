@@ -6,6 +6,6 @@ class VenuesController < InheritedResources::Base
 
   def show
   	@venue = Venue.find(params[:id])
-  	@girls = Venue.find(params[:id]).girls.paginate(page: params[:page], per_page: 30)
+  	@technicians = Venue.find(params[:id]).technicians.paginate(page: params[:page], per_page: 30)
   end
 end

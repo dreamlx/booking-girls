@@ -19,7 +19,7 @@
   %b 服务说明：
   %pre= @service_menu.desc
 
-= render "/home/girls_list" 
+= render "/home/technicians_list" 
   
 - if current_user.admin
   = link_to '编辑', edit_service_menu_path(@service_menu) 

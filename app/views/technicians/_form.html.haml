@@ -1,5 +1,5 @@
 -# encoding: UTF-8
-= simple_nested_form_for(@girl, html: { class: 'form-horizontal' }) do |f|
+= simple_nested_form_for(@technician, html: { class: 'form-horizontal' }) do |f|
   = f.error_notification
   
   .form-inputs
@@ -14,14 +14,16 @@
 
   .field
     %p= f.input :avatar, as: :file, :label => "服务图片"
-    %p= image_tag @girl.avatar.url unless @girl.avatar.url.nil?
+    %p= image_tag @technician.avatar.url unless @technician.avatar.url.nil?
     %hr
     = f.simple_fields_for :pics do |p|
       %p.fields
         - if p.object.nil? || p.object.new_record?
           %span= p.input :photo, as: :file
+          %span= p.input :title
         - else
           %span= image_tag p.object.photo.thumb.url
+          %span= p.input :title
           %span.span2= p.link_to_remove t("views.remove"), class: "btn btn-warning"
 
     = f.link_to_add t("views.add_pictures"), :pics, class: "btn btn-primary btn-smaller"

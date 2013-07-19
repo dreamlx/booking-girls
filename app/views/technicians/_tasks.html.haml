@@ -1,0 +1,28 @@
+- if user_signed_in? 
+  - case @technician.state
+  - when 'pending'
+    /= link_to "上钟", technician_tasks_path(@technician), class: "btn", method: 'POST'
+    = link_to "预约", booking_technician_path(@technician), class: "btn-waring btn btn-large", method: 'PUT'
+    - if current_user.admin?          
+      = link_to "休假", leave_technician_path(@technician), class: "btn btn-large", method: 'PUT' 
+  - when 'working'
+    - if current_user.admin?
+      = link_to "服务加时", technician_task_path(@technician), class: "btn btn-large", method: 'PUT'
+      = link_to "提前结束", technician_task_path(@technician), class: "btn btn-large", method: 'DELETE'
+  - when 'getoff'
+    - if current_user.admin?
+      = link_to "上班", atwork_technician_path(@technician), class: "btn btn-large", method: 'PUT'
+  - when 'booked'
+    = link_to "取消预定", booking_technician_path(@technician), class: "btn btn-large", method: 'PUT'
+    - if current_user.admin?
+      %p= render '/tasks/form'
+
+  - if not @technician.tasks.last.nil? and @technician.state == 'working'
+    %p
+      .label.label-warning 
+        [开始时间]
+        = @technician.tasks.last.starttime.localtime.strftime("%H:%M")
+      
+      .label.label-warning 
+        [结束时间]
+        = @technician.tasks.last.endtime.localtime.strftime("%H:%M")  

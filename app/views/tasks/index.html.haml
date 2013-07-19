@@ -21,7 +21,7 @@
     %th 其他说明
   - @tasks.each do |task|
     %tr
-      %td= task.girl.name unless task.girl.nil?
+      %td= task.technician.name unless task.technician.nil?
       %td
         %span.label= task.price
       %td= task.intermediary

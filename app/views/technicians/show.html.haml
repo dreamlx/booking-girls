@@ -1,0 +1,54 @@
+- @lasttime = @technician.tasks.count > 0 ? @technician.tasks.last.endtime.localtime.to_i : 0
+#technician-show
+
+.container-fluid
+  -if @technician.state == 'working'
+    #defaultCountdown{ style: 'margin-bottom:20px;', rel: @lasttime }
+  %span#pageback= link_to "返回", '#', class: "btn-large btn"
+  = render "tasks"      
+  %hr
+  .shop-info-text    
+    %span.label.label-info
+      = "姓名：#{@technician.name}"
+    %span.label.label-info
+      = "年龄：#{@technician.age}" 
+    %span.label{ class: @technician.state == 'working' ? "label-important" : "label-warning" }
+      = "状态：" + t(".#{@technician.state}") 
+    %span
+      .label 所属门店:
+      - @technician.venues.each do |venue|
+        .label= venue.name
+      
+  %p
+    %a{ href: @technician.avatar.original.url, class: "fancybox thumbnail", rel: "technicians-group" }
+      = image_tag @technician.avatar.normal.url
+  .row-fluid
+    .span{ class: @technician.state == 'getoff' ? "gray" : "" }
+      %ul.thumbnails
+        - @technician.pics.each_with_index do |pic, index|
+          %li
+            %a{ href: pic.photo.original.url, class: "fancybox thumbnail", rel: "technicians-group" }
+              = image_tag pic.photo.thumbnail.url
+
+%p
+  %h3 
+    技师介绍：
+    = @technician.name  
+  #pre= @technician.desc
+  %p.label 服务项目
+  %p
+    - @technician.service_menus.each do |service_menu|
+      = link_to service_menu.service_name, service_menu_path(service_menu), class: "btn btn-warning"
+  %h1.comments
+    = t("views.comments")
+  .comments-container
+    %p
+      = render "/comments/leave_comment"
+    %hr
+    - unless @technician.comments.empty?
+      = render partial: "/comments/comment", collection: @technician.comments
+
+  
+
+
+

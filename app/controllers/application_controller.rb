@@ -33,13 +33,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_girls_state
-    girls = Girl.where(["state = ? ", "working"])
+  def check_technicians_state
+    technicians = Technician.where(["state = ? ", "working"])
     
-    girls.each do |girl|
-      last_task = girl.tasks.last
+    technicians.each do |technician|
+      last_task = technician.tasks.last
       next if last_task.nil?
-      girl.complete_work if last_task.endtime < Time.now
+      technician.complete_work if last_task.endtime < Time.now
     end
   end
 

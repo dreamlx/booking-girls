@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :except => :index
-  before_filter :check_girls_state
+  before_filter :check_technicians_state
   def index
     if user_signed_in?
       redirect_to '/companies/new' if @current_company.nil? 
@@ -15,8 +15,8 @@ class HomeController < ApplicationController
     @service_menus = @current_company.service_menus
   end
 
-  def girls
-    @girls = @current_company.girls.paginate(page: params[:page], per_page: 30)
+  def technicians
+    @technicians = @current_company.technicians.paginate(page: params[:page], per_page: 30)
   end
   
 end

@@ -6,7 +6,7 @@ class ServiceMenusController < InheritedResources::Base
 
   def show
   	@service_menu = ServiceMenu.find(params[:id])
-  	@girls = ServiceMenu.find(params[:id]).girls.paginate(page: params[:page], per_page: 30)
+  	@technicians = ServiceMenu.find(params[:id]).technicians.paginate(page: params[:page], per_page: 30)
   end
 
 end

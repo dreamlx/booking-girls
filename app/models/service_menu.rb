@@ -5,7 +5,7 @@ class ServiceMenu < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   
   has_and_belongs_to_many :tasks
-  has_and_belongs_to_many :girls
+  has_and_belongs_to_many :technicians
   belongs_to :company
 
   has_many :pics, as: :picable

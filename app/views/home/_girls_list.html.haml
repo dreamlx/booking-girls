@@ -1,18 +1,18 @@
 %h3 相关技师
 %ul.thumbnails
-  - @girls.each do |girl|
+  - @technicians.each do |technician|
     %li.product-box.span4
       .product-details.caption
         .shop-info-text
           %span.label.label-info
-            = "姓名：#{girl.name}"
+            = "姓名：#{technician.name}"
           %span.label.label-info
-            = "年龄：#{girl.age}" 
+            = "年龄：#{technician.age}" 
           %span.label.label-warning
-            = "状态：" + t("girls.show.#{girl.state}")        
+            = "状态：" + t("technicians.show.#{technician.state}")        
         %p.thumbnail
-          %a{ :href => girl_path(girl), :class => [girl.state == 'getoff' ? "gray" : ""] }
-            = image_tag(girl.avatar.thumbnail.url) unless girl.avatar.url.nil?
+          %a{ :href => technician_path(technician), :class => [technician.state == 'getoff' ? "gray" : ""] }
+            = image_tag(technician.avatar.thumbnail.url) unless technician.avatar.url.nil?
 
-= will_paginate @girls
+= will_paginate @technicians
 

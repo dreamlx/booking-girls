@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   belongs_to :company
   has_many :venues, through: :company
-  has_many :girls, through: :company
+  has_many :technicians, through: :company
 
   def self.current
     Thread.current[:user]

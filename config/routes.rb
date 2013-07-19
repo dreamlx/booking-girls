@@ -6,14 +6,14 @@ Tzk3d::Application.routes.draw do
 
   resources :venues
 
-  resources :girls
+  resources :technicians
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'home#index'
   resources :tasks
   
-  resources :girls do
+  resources :technicians do
     resources :tasks, controller: :tasks 
     
     member do
@@ -39,7 +39,7 @@ Tzk3d::Application.routes.draw do
     collection do
       get :services
       get :venues
-      get :girls
+      get :technicians
     end
   end
 end

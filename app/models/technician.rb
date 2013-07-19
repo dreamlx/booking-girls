@@ -1,4 +1,4 @@
-class Girl < ActiveRecord::Base
+class Technician < ActiveRecord::Base
   validates :name, :presence => true
 
   attr_accessible :age, :bwh, 

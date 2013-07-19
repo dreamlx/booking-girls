@@ -1,0 +1,28 @@
+
+%h1 
+  技师列表
+%p= link_to '添加技师', new_technician_path, class: "btn"
+%table.table
+  %tr
+    %th 姓名
+    %th 年龄
+    %th 价格
+    %th 状态
+    %th
+    %th
+    %th
+  - @technicians.each do |technician|
+    %tr
+      %td
+        = image_tag technician.avatar.thumb.url unless technician.avatar.url.nil?
+        = technician.name
+      %td= technician.age
+      %td= technician.price
+      %td
+        .label.label-info= technician.state
+      %td= link_to '查看', technician, class: "btn"
+      %td= link_to '编辑', edit_technician_path(technician), class: "btn" if technician.state == 'pending' or technician.state == 'getoff'
+      %td= link_to '删除', technician, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn" if technician.state == 'pending' or technician.state == 'getoff'
+    = will_paginate @technicians
+
+
