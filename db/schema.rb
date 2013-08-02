@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719025607) do
+ActiveRecord::Schema.define(:version => 20130802154430) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -86,14 +86,6 @@ ActiveRecord::Schema.define(:version => 20130719025607) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "girls_service_menus", :force => true do |t|
-    t.integer "girl_id"
-    t.integer "service_menu_id"
-  end
-
-  add_index "girls_service_menus", ["girl_id"], :name => "index_girls_services_on_girl_id"
-  add_index "girls_service_menus", ["service_menu_id"], :name => "index_girls_services_on_service_id"
 
   create_table "model3ds", :force => true do |t|
     t.string   "title"
@@ -227,6 +219,14 @@ ActiveRecord::Schema.define(:version => 20130719025607) do
     t.string   "avatar"
   end
 
+  create_table "technicians_service_menus", :force => true do |t|
+    t.integer "technician_id"
+    t.integer "service_menu_id"
+  end
+
+  add_index "technicians_service_menus", ["service_menu_id"], :name => "index_girls_services_on_service_id"
+  add_index "technicians_service_menus", ["technician_id"], :name => "index_girls_services_on_girl_id"
+
   create_table "topics", :force => true do |t|
     t.string   "title"
     t.datetime "created_at", :null => false
@@ -267,7 +267,7 @@ ActiveRecord::Schema.define(:version => 20130719025607) do
   end
 
   create_table "work_relationships", :force => true do |t|
-    t.integer "girl_id"
+    t.integer "technician_id"
     t.integer "venue_id"
   end
 
