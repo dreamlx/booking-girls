@@ -5,7 +5,7 @@
         点单服务
         = " - " + Venue.find(params[:venue_id]).name unless params[:venue_id].blank?
       %ul{:class => "nav", role: "navigation"}                
-        - if user_signed_in?
+        - if user_signed_in? and !@current_company.nil?
           %li
             = link_to "按技师", technicians_home_index_path unless @current_company.technicians.blank?
           %li
@@ -25,6 +25,8 @@
               = link_to '公司信息', current_user.company.blank? ? new_company_path : company_path(current_user.company)
           %li
             =  link_to t("menu.Logout"), destroy_user_session_path, :method => :delete
+        - elsif @current_company.nil?
+          %li
         - else
           %li
             =  link_to t("menu.Login"), new_user_session_path
