@@ -11,9 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20130802033411) do
-
+ActiveRecord::Schema.define(:version => 20130802072453) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -49,13 +47,19 @@ ActiveRecord::Schema.define(:version => 20130802033411) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
-
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
     t.text     "comment"
     t.integer  "commentable_id"
     t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
   end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -78,46 +82,12 @@ ActiveRecord::Schema.define(:version => 20130802033411) do
   add_index "create_credit_line_items", ["order_id"], :name => "index_create_credit_line_items_on_order_id"
 
   create_table "credits", :force => true do |t|
-
     t.integer  "user_id"
     t.decimal  "start_balance", :default => 0.0
     t.decimal  "balance",       :default => 0.0
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
-
-  add_index "credits", ["user_id"], :name => "index_credits_on_user_id"
-
-  create_table "dailyposts", :force => true do |t|
-    t.integer  "girl_id"
-    t.text     "content"
-    t.string   "photo"
-    t.string   "linkto"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "cost"
-    t.string   "state"
-  end
-
-  create_table "create_credit_line_items", :force => true do |t|
-    t.integer  "credit_id"
-    t.integer  "order_id"
-    t.decimal  "amount"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "create_credit_line_items", ["credit_id"], :name => "index_create_credit_line_items_on_credit_id"
-  add_index "create_credit_line_items", ["order_id"], :name => "index_create_credit_line_items_on_order_id"
-
-  create_table "credits", :force => true do |t|
-    t.integer  "user_id"
-    t.decimal  "start_balance", :default => 0.0
-    t.decimal  "balance",       :default => 0.0
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-  end
-
 
   add_index "credits", ["user_id"], :name => "index_credits_on_user_id"
 
@@ -156,20 +126,6 @@ ActiveRecord::Schema.define(:version => 20130802033411) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
-
-
-  add_index "girls_service_menus", ["girl_id"], :name => "index_girls_service_menus_on_girl_id"
-  add_index "girls_service_menus", ["service_menu_id"], :name => "index_girls_service_menus_on_service_menu_id"
-
-  create_table "loser_likes", :force => true do |t|
-    t.integer  "loser_id"
-    t.integer  "dailypost_id"
-    t.string   "title"
-    t.string   "state"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
 
   create_table "materials", :force => true do |t|
     t.string   "title"
@@ -260,9 +216,6 @@ ActiveRecord::Schema.define(:version => 20130802033411) do
     t.string   "avatar"
   end
 
-  add_index "tasks_service_menus", ["service_menu_id"], :name => "index_tasks_service_menus_on_service_menu_id"
-  add_index "tasks_service_menus", ["task_id"], :name => "index_tasks_service_menus_on_task_id"
-
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -308,7 +261,7 @@ ActiveRecord::Schema.define(:version => 20130802033411) do
   end
 
   create_table "work_relationships", :force => true do |t|
-    t.integer "girl_id"
+    t.integer "technician_id"
     t.integer "venue_id"
   end
 
