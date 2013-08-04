@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20130802072453) do
 
+
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
     t.string   "resource_type", :null => false
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20130802072453) do
     t.datetime "updated_at", :null => false
   end
 
+
   add_index "create_credit_line_items", ["credit_id"], :name => "index_create_credit_line_items_on_credit_id"
   add_index "create_credit_line_items", ["order_id"], :name => "index_create_credit_line_items_on_order_id"
 
@@ -96,6 +98,12 @@ ActiveRecord::Schema.define(:version => 20130802072453) do
     t.text     "content"
     t.string   "photo"
     t.string   "linkto"
+
+  create_table "model3ds", :force => true do |t|
+    t.string   "title"
+    t.string   "modelfile"
+    t.integer  "product_id"
+
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "cost"
@@ -214,6 +222,22 @@ ActiveRecord::Schema.define(:version => 20130802072453) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "avatar"
+  end
+
+
+  create_table "technicians_service_menus", :force => true do |t|
+    t.integer "technician_id"
+    t.integer "service_menu_id"
+  end
+
+  add_index "technicians_service_menus", ["service_menu_id"], :name => "index_girls_services_on_service_id"
+  add_index "technicians_service_menus", ["technician_id"], :name => "index_girls_services_on_girl_id"
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "node_id"
   end
 
   create_table "users", :force => true do |t|
