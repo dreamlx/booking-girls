@@ -13,7 +13,7 @@ require 'rvm/capistrano'
 
 #set :rvm_type, :user
 # main details
-set :application, "booking-girls"
+set :application, "xiadan.me"
 set :keep_releases, 10 
 
 #server details
@@ -27,7 +27,7 @@ set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 set :scm_username, "dreamlx"
 set :scm_passphrase, "github2melx"
-set :repository,  "git@github.com:dreamlx/booking-girls.git"
+set :repository,  "git@github.com:dreamlx/xiadan_me.git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 
