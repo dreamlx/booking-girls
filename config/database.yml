@@ -26,7 +26,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: booking_girls_production
+  database: booking_girls_dev
   pool: 5
   host: localhost
   port: 5432

@@ -64,4 +64,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
   
   version :original
+
+  def default_url
+    "/fallback/default.png"
+  end
+
 end
