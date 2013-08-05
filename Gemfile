@@ -84,6 +84,7 @@ end
 
 group :development do
   #display all info, important
+  gem 'mysql2'
   gem 'rails-footnotes', '>= 3.7.9'
   gem 'pry-rails'
 
