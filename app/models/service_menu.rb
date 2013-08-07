@@ -1,6 +1,6 @@
 class ServiceMenu < ActiveRecord::Base
   attr_accessible :service_name, :service_price, :company_id, :avatar, :desc, :pics_attributes
-  validates_presence_of :service_name, :service_price
+  validates_presence_of :service_name, :service_price, :avatar
   validates_numericality_of :service_price
   mount_uploader :avatar, AvatarUploader
   
