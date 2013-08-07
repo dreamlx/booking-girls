@@ -10,7 +10,7 @@ namespace :utils do
 		@sm = ServiceMenu.all
 		@pic = Pic.all
 		modified_by_shell
-		upload_to_qiniu(@t,1)
+		upload_to_qiniu(@coy,1)
 		upload_to_qiniu(@tech,1)
 		upload_to_qiniu(@ve,1)
 		upload_to_qiniu(@sm,1)
@@ -34,13 +34,13 @@ def upload_to_qiniu(ava,a)
 					puts "avatar is nil"
 				else
 					puts t.avatar.current_path
-					if FileTest::exist?(t.photo.current_path)
+					if FileTest::exist?(t.avatar.current_path)
 						t.avatar = File.open(t.avatar.current_path)
 						t.save!
 						puts "upload is success to qiniu"
 						puts "qiniu address #{t.avatar.url}"
 					else
-						puts "file is exist"
+						puts "file is not exist"
 					end
 				end
 			end
@@ -75,15 +75,25 @@ def modified_by_shell
 	`sed -i 's/storage :file/storage :qiniu/g' #{url}`
 
 	url = Rails.root.to_s+"/config/initializers/carrierwave.rb"
-	context = "config.storage             = :qiniu\\nconfig.qiniu_access_key    = \"93vlzlK9UlO6UhZaVlrZ4RyVanIv5f1meAX_ofK2\"\\nconfig.qiniu_secret_key    = \"7UGe9arh_jrxTQGa1WLba3D8xDZ-FbXOJSVYAJt7\"\\nconfig.qiniu_bucket        = \"xiadan\"\\nconfig.qiniu_bucket_domain = \"xiaddan.qiniudn.com\"\\nconfig.qiniu_block_size    = 4*1024*1024\\nconfig.qiniu_protocal      = \"http\""
-	`sed -i '12 i #{context}'  #{url}`
+	con = IO.read(url)
+	if con.include?("qiniu")
+		puts "carrierwave.rb already update"
+	else
+		context = "config.storage             = :qiniu\\nconfig.qiniu_access_key    = \"93vlzlK9UlO6UhZaVlrZ4RyVanIv5f1meAX_ofK2\"\\nconfig.qiniu_secret_key    = \"7UGe9arh_jrxTQGa1WLba3D8xDZ-FbXOJSVYAJt7\"\\nconfig.qiniu_bucket        = \"xiadan\"\\nconfig.qiniu_bucket_domain = \"xiaddan.qiniudn.com\"\\nconfig.qiniu_block_size    = 4*1024*1024\\nconfig.qiniu_protocal      = \"http\""
+		`sed -i '12 i #{context}'  #{url}`
+	end	
+	
 
 	url = Rails.root.to_s+"/config/qiniu-rs.rb"
 	context = "Qiniu::RS.establish_connection! :access_key => '93vlzlK9UlO6UhZaVlrZ4RyVanIv5f1meAX_ofK2', \n :secret_key => '7UGe9arh_jrxTQGa1WLba3D8xDZ-FbXOJSVYAJt7'"
-	`touch #{url}`
-	file = File.open("#{url}","w")
-	file.puts context
-	file.close
+	if !FileTest::exist?(url)
+		`touch #{url}`
+		file = File.open("#{url}","w")
+		file.puts context
+		file.close
+	else
+		puts "qiniu-rs.rb file is exist"
+	end
 end
 
 # def self.save(rules,url)  
@@ -105,4 +115,4 @@ end
 # 	YAML::load(File.read("#{url}"))  
 # end 
 
-	
+
