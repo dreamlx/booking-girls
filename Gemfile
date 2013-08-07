@@ -13,10 +13,11 @@ gem 'awesome_nested_set'
 gem 'useragent'
 gem 'gon'
 gem 'by_star', :git => "git://github.com/radar/by_star"
+gem 'carrierwave-qiniu'
 #i18n
 gem 'rails-i18n'
 gem 'devise-i18n-views'
-
+gem 'qiniu-rs'
 #paginate
 gem 'bootstrap-will_paginate', :git => 'git://github.com/yrgoldteeth/bootstrap-will_paginate.git'
 #gem 'kaminari' 
@@ -83,6 +84,7 @@ end
 
 group :development do
   #display all info, important
+  gem 'mysql2'
   gem 'rails-footnotes', '>= 3.7.9'
   gem 'pry-rails'
 

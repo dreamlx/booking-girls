@@ -41,20 +41,11 @@ ActiveRecord::Schema.define(:version => 20130805031858) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "username"
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.integer  "parent_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.integer  "depth"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -79,6 +70,38 @@ ActiveRecord::Schema.define(:version => 20130805031858) do
     t.string   "avatar"
   end
 
+  create_table "create_credit_line_items", :force => true do |t|
+    t.integer  "credit_id"
+    t.integer  "order_id"
+    t.decimal  "amount"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "create_credit_line_items", ["credit_id"], :name => "index_create_credit_line_items_on_credit_id"
+  add_index "create_credit_line_items", ["order_id"], :name => "index_create_credit_line_items_on_order_id"
+
+  create_table "credits", :force => true do |t|
+    t.integer  "user_id"
+    t.decimal  "start_balance", :default => 0.0
+    t.decimal  "balance",       :default => 0.0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "credits", ["user_id"], :name => "index_credits_on_user_id"
+
+  create_table "dailyposts", :force => true do |t|
+    t.integer  "girl_id"
+    t.text     "content"
+    t.string   "photo"
+    t.string   "linkto"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "cost"
+    t.string   "state"
+  end
+
   create_table "dicts", :force => true do |t|
     t.string   "title"
     t.string   "category"
@@ -87,80 +110,46 @@ ActiveRecord::Schema.define(:version => 20130805031858) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "model3ds", :force => true do |t|
+  create_table "loser_likes", :force => true do |t|
+    t.integer  "loser_id"
+    t.integer  "dailypost_id"
     t.string   "title"
-    t.string   "modelfile"
-    t.integer  "product_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "nodes", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "pics", :force => true do |t|
-    t.string   "title"
-    t.string   "photo"
-    t.string   "picable_type"
-    t.integer  "picable_id"
+    t.string   "state"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
 
-  add_index "pics", ["picable_id"], :name => "index_pics_on_picable_id"
-
-  create_table "product_relations", :force => true do |t|
-    t.string   "rs_name"
-    t.integer  "user_id"
-    t.integer  "product_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "products", :force => true do |t|
-    t.string   "name"
-    t.string   "designer"
+  create_table "materials", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "resource_type"
+    t.integer  "resource_id"
     t.decimal  "price"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.string   "model3d"
-    t.text     "desc"
-    t.string   "size"
-    t.boolean  "favor",       :default => false
-    t.integer  "category_id"
-    t.string   "status"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "attachment"
   end
 
-  create_table "profiles", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "gender"
-    t.text     "address"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "orders", :force => true do |t|
+    t.integer  "credit_id"
+    t.decimal  "credit_quantity", :precision => 8, :scale => 2
+    t.decimal  "total",           :precision => 8, :scale => 2
+    t.string   "number"
+    t.string   "state"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+    t.string   "content"
   end
 
-  create_table "rates", :force => true do |t|
-    t.integer "score"
+  create_table "resources", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "resourceable"
+    t.integer  "resourceable_id"
+    t.decimal  "price"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
-
-  create_table "ratings", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "rate_id"
-    t.integer  "rateable_id"
-    t.string   "rateable_type", :limit => 32
-    t.text     "free_text"
-    t.string   "rater_name"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
-  add_index "ratings", ["rate_id"], :name => "index_ratings_on_rate_id"
-  add_index "ratings", ["rateable_id", "rateable_type"], :name => "index_ratings_on_rateable_id_and_rateable_type"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -188,24 +177,24 @@ ActiveRecord::Schema.define(:version => 20130805031858) do
     t.text     "desc"
   end
 
-  create_table "service_menus_tasks", :force => true do |t|
+  create_table "tasks", :force => true do |t|
+    t.datetime "starttime"
+    t.datetime "endtime"
+    t.integer  "technician_id"
+    t.string   "title"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "intermediary"
+    t.decimal  "price"
+  end
+
+  create_table "tasks_service_menus", :force => true do |t|
     t.integer "task_id"
     t.integer "service_menu_id"
   end
 
-  add_index "service_menus_tasks", ["service_menu_id"], :name => "index_tasks_services_on_service_id"
-  add_index "service_menus_tasks", ["task_id"], :name => "index_tasks_services_on_task_id"
-
-  create_table "tasks", :force => true do |t|
-    t.datetime "starttime"
-    t.datetime "endtime"
-    t.integer  "girl_id"
-    t.string   "title"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "intermediary"
-    t.decimal  "price"
-  end
+  add_index "tasks_service_menus", ["service_menu_id"], :name => "index_tasks_service_menus_on_service_menu_id"
+  add_index "tasks_service_menus", ["task_id"], :name => "index_tasks_service_menus_on_task_id"
 
   create_table "technicians", :force => true do |t|
     t.string   "name"
@@ -224,20 +213,10 @@ ActiveRecord::Schema.define(:version => 20130805031858) do
     t.integer "service_menu_id"
   end
 
-  add_index "technicians_service_menus", ["service_menu_id"], :name => "index_girls_services_on_service_id"
-  add_index "technicians_service_menus", ["technician_id"], :name => "index_girls_services_on_girl_id"
-
-  create_table "topics", :force => true do |t|
-    t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "node_id"
-  end
+  add_index "technicians_service_menus", ["service_menu_id"], :name => "index_girls_service_menus_on_service_menu_id"
+  add_index "technicians_service_menus", ["technician_id"], :name => "index_girls_service_menus_on_girl_id"
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
@@ -248,8 +227,14 @@ ActiveRecord::Schema.define(:version => 20130805031858) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "device_token"
+    t.string   "username"
+    t.string   "token_authenticatable"
     t.boolean  "admin"
     t.integer  "company_id"
+    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -264,6 +249,15 @@ ActiveRecord::Schema.define(:version => 20130805031858) do
     t.datetime "updated_at", :null => false
     t.integer  "company_id"
     t.string   "avatar"
+  end
+
+  create_table "visit_histories", :force => true do |t|
+    t.integer  "dailypost_id"
+    t.integer  "user_id"
+    t.string   "state"
+    t.integer  "visit_count"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "work_relationships", :force => true do |t|
