@@ -1,5 +1,5 @@
 class Venue < ActiveRecord::Base
-  validates :name, :presence => true
+  validates_presence_of :name, :avatar
   attr_accessible :address, :contact, :desc, :name, :company_id, :avatar, :pics_attributes
 
   has_many :work_relationships

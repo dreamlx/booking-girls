@@ -17,5 +17,5 @@
   %ul
     - @company.users.each  do |user| 
       %li= user.email
-= link_to 'Edit', edit_company_path(@company)
+= link_to '更新', edit_company_path(@company), class: "btn"
 
