@@ -2,11 +2,11 @@
   - unless @current_company.nil?
     .row
       - unless @current_company.venues.blank?
-        .span6
+        .span5
           .hero-unit
             = link_to "按门店查询", venues_home_index_path 
       - unless @current_company.service_menus.blank?
-        .span6
+        .span5
           .hero-unit
             = link_to "按服务查询", services_home_index_path
   - else
