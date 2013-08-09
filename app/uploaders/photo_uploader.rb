@@ -64,6 +64,10 @@ class PhotoUploader < CarrierWave::Uploader::Base
      "#{secure_token}.#{file.extension}" if original_filename.present?
   end
 
+  def default_url
+    "/fallback/default.png"
+  end
+
   protected
   def secure_token
     var = :"@#{mounted_as}_secure_token"

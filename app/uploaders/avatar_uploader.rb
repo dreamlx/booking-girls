@@ -43,9 +43,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_white_list
+     %w(jpg jpeg gif png)
+  end
 
   # Override the qiniuname of the uploaded qinius:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
@@ -65,5 +65,13 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
   
   version :original
+
+  def filename
+     "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+  
+  def default_url
+    "/fallback/default.png"
+  end
 
 end

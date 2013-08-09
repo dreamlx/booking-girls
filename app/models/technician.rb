@@ -1,6 +1,7 @@
 class Technician < ActiveRecord::Base
   validates :name, presence: true
   validates :avatar, presence: true
+  
   attr_accessible :age, :bwh, 
     :desc, :name, 
     :price, :avatar, 

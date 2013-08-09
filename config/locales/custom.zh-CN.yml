@@ -3,9 +3,9 @@ zh-CN:
 
   technicians:
     show:
-      pending: 待钟
-      working: 上钟
-      getoff: 休假
+      pending: 等待中
+      working: 工作中
+      getoff: 已休假
       booked: 已预定  
   menu:
     Create: 上传模型
