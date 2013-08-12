@@ -1,14 +1,22 @@
 # todo
-add profile
-add avatar
-change upload file_field
 support progressbar for uploading
 
-整理task逻辑
-整理后台逻辑
+重构预订逻辑：
+1. admin可以创建可预订资源（人、桌子）
+2. 创建预订列表
+3. 客户预订，进入排队（可以对资源排队-按摩，也可以作为整体排队-餐馆）
+4. 队列中客户状态可以取消，或者转为服务，可以调整队列
+5. 服务中的客户可以取消，结束服务
+6. 服务需要计时，可以同时开启N个服务（N受资源限制，资源：人，桌子）
+6.1 资源有状态，空闲、在忙、已预约
+7. 预约需要支付预约费用：0-无限
+8. 服务价格模块
+8.1 服务价格由N个组合内容构成，技师就是服务套餐，点餐就是菜单
+8.2 组合内容可以增减，每个内容都有价格
+8.3 可以服务开始前收费，也可以服务结束时收费
+8.4 可以有负价格的服务，作为优惠对冲
+8.5 可以对总价折扣
 
-#story
-users can see all pic
 
 #paginate css style
     http://mislav.uniqpath.com/will_paginate/

@@ -12,10 +12,10 @@
             = image_tag "/assets/view.png"
             = link_to "按服务查询", services_home_index_path, class: "btn-large btn" 
   - else
-    %h3 等待管理员设置
-  %p
-  .hero-unit
-    - if @current_company.nil? or  @current_company.avatar.url.nil?
-      %h3 欢迎访问~下单么~服务平台
-    - else
-      %center= image_tag @current_company.avatar.url       
+    %p
+    .hero-unit
+      - if @current_company.nil? or  @current_company.avatar.url.nil?
+        %center
+          %h1 欢迎访问下单服务平台
+      - else
+        %center= image_tag @current_company.avatar.url       

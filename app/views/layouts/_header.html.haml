@@ -2,8 +2,7 @@
   .navbar-inner
     .container
       %a.brand{href: root_path}
-        点单服务
-        = " - " + Venue.find(params[:venue_id]).name unless params[:venue_id].blank?
+        = image_tag "logo-icon.png", height: '64', width: '64'
       %ul{:class => "nav", role: "navigation"}                
         - if user_signed_in? and !@current_company.nil?
           %li
