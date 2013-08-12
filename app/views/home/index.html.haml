@@ -1,21 +1,21 @@
 .container
-  - unless @current_company.nil?
+  - if @current_company
     .row
-      - unless @current_company.venues.blank?
+      - if @current_company.venues
         .span5
           %center
             = image_tag "/assets/view.png"
             = link_to "按门店查询", venues_home_index_path, class: "btn-large btn" 
-      - unless @current_company.service_menus.blank?
+      - if @current_company.service_menus
         .span5
           %center
             = image_tag "/assets/view.png"
-            = link_to "按服务查询", services_home_index_path, class: "btn-large btn" 
-  - else
+            = link_to "按服务查询", services_home_index_path, class: "btn-large btn"
     %p
-    .hero-unit
-      - if @current_company.nil? or  @current_company.avatar.url.nil?
-        %center
-          %h1 欢迎访问下单服务平台
-      - else
-        %center= image_tag @current_company.avatar.url       
+      - if @current_company.avatar
+        .hero-unit
+          .hero= image_tag @current_company.avatar.url
+  - else
+    .hero
+      %h1 欢迎访问下单服务平台
+      = link_to t("menu.Login"), new_user_session_path, class: "btn btn-large"
