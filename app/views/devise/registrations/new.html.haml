@@ -1,5 +1,5 @@
 %h2 Sign up
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
   = devise_error_messages!
   %div
     = f.label :email
@@ -13,5 +13,7 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation
+  %dive
+    = f.input :admin, label: "企业管理员", checked: "checked"
   %div= f.submit "Sign up"
 = render "devise/shared/links"

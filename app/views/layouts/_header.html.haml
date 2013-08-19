@@ -22,3 +22,6 @@
               = link_to '公司信息', current_user.company.blank? ? new_company_path : company_path(current_user.company)
           %li
             =  link_to t("menu.Logout"), destroy_user_session_path, :method => :delete
+        - else
+          %li
+            = link_to "注册", new_user_registration_path
