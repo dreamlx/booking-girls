@@ -8,6 +8,14 @@ Tzk3d::Application.routes.draw do
 
   resources :technicians
 
+  resources :orders, only: [:index, :show, :create] do
+    member do
+      post 'pay'
+    end
+  end
+  
+  resources :credits, only: [:index]
+
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'home#index'

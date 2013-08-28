@@ -12,4 +12,6 @@
 
   .actions
     %hr
-    %p= f.submit "开始服务", :class => "btn btn-warning btn-large" 
+    %p
+      = link_to "在线付款", '#', class: "btn-large btn"
+      = f.submit "开始服务", :class => "btn btn-warning btn-large" 
