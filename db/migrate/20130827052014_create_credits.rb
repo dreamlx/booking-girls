@@ -9,6 +9,6 @@ class CreateCredits < ActiveRecord::Migration
     end
     add_index :credits, :user_id
 
-    #User.all.each { |u| u.create_credit }
+    User.all.each { |u| u.create_credit }
   end
 end
