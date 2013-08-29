@@ -1,4 +1,5 @@
 - if user_signed_in? 
+  = link_to "在线付款", '#', class: "btn-large btn"
   - case @technician.state
   - when 'pending'
     /= link_to "上钟", technician_tasks_path(@technician), class: "btn", method: 'POST'
