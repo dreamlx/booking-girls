@@ -1,20 +1,20 @@
 .container
   - if user_signed_in?
     .row
-      - if @current_company and @current_company.venues
+      - if can? :read, Venue
         .span5
           %center
             = image_tag "/assets/view.png"
             = link_to "按门店查询", venues_home_index_path, class: "btn-large btn" 
-      - if @current_company and @current_company.service_menus
+      - if can? :read, ServiceMenu
         .span5
           %center
             = image_tag "/assets/view.png"
             = link_to "按服务查询", services_home_index_path, class: "btn-large btn"
-    %p
-      - if @current_company and @current_company.avatar
-        .hero-unit
-          .hero= image_tag @current_company.avatar.url
+    %br/ 
+    - if @current_company
+      .hero-unit
+        .hero= image_tag @current_company.avatar.url
   - else
     .hero-unit
       %h1 欢迎访问下单服务平台
