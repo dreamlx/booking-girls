@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805031858) do
+ActiveRecord::Schema.define(:version => 20130914100927) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -79,6 +79,27 @@ ActiveRecord::Schema.define(:version => 20130805031858) do
     t.string   "avatar"
   end
 
+  create_table "credit_line_items", :force => true do |t|
+    t.decimal  "amount",     :precision => 8, :scale => 2
+    t.integer  "credit_id"
+    t.integer  "order_id"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+  end
+
+  add_index "credit_line_items", ["credit_id"], :name => "index_credit_line_items_on_credit_id"
+  add_index "credit_line_items", ["order_id"], :name => "index_credit_line_items_on_order_id"
+
+  create_table "credits", :force => true do |t|
+    t.integer  "user_id"
+    t.decimal  "start_balance"
+    t.decimal  "balance"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "credits", ["user_id"], :name => "index_credits_on_user_id"
+
   create_table "dicts", :force => true do |t|
     t.string   "title"
     t.string   "category"
@@ -100,6 +121,20 @@ ActiveRecord::Schema.define(:version => 20130805031858) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "orders", :force => true do |t|
+    t.string   "number"
+    t.decimal  "credit_quantity"
+    t.decimal  "total",           :precision => 8, :scale => 2
+    t.string   "state"
+    t.integer  "user_id"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
+
+  add_index "orders", ["number"], :name => "index_orders_on_number"
+  add_index "orders", ["state"], :name => "index_orders_on_state"
+  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "pics", :force => true do |t|
     t.string   "title"
@@ -161,22 +196,6 @@ ActiveRecord::Schema.define(:version => 20130805031858) do
 
   add_index "ratings", ["rate_id"], :name => "index_ratings_on_rate_id"
   add_index "ratings", ["rateable_id", "rateable_type"], :name => "index_ratings_on_rateable_id_and_rateable_type"
-
-  create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "roles_users", :force => true do |t|
-    t.integer  "role_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
-  add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
 
   create_table "service_menus", :force => true do |t|
     t.string   "service_name"
@@ -248,8 +267,8 @@ ActiveRecord::Schema.define(:version => 20130805031858) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "admin"
     t.integer  "company_id"
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

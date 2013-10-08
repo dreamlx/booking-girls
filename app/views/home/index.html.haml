@@ -1,22 +1,40 @@
 .container
-  - if @current_company
+  - if user_signed_in?
     .row
-      - if @current_company.venues
+      - if @current_company and @current_company.venues
         .span5
           %center
             = image_tag "/assets/view.png"
             = link_to "按门店查询", venues_home_index_path, class: "btn-large btn" 
-      - if @current_company.service_menus
+      - if @current_company and @current_company.service_menus
         .span5
           %center
             = image_tag "/assets/view.png"
             = link_to "按服务查询", services_home_index_path, class: "btn-large btn"
     %p
-      - if @current_company.avatar
+      - if @current_company and @current_company.avatar
         .hero-unit
           .hero= image_tag @current_company.avatar.url
   - else
-    .hero
+    .hero-unit
       %h1 欢迎访问下单服务平台
-      = link_to t("menu.Login"), new_user_session_path, class: "btn btn-large"
-      = h "测试帐号：test@zjt.com, 密码：11111111"
+      .hero= h "测试帐号：test@zjt.com, 密码：11111111"
+    .row
+      .span5.offset2
+        %h3 我是客户 
+        %p= link_to t("menu.Login"), 
+              new_user_session_path(role: :cosumer), 
+              class: "btn btn-large"
+        %p= link_to t("menu.Try"), 
+              new_user_registration_path(role: :cosumer), 
+              class: "btn btn-large"
+      .span5
+        %h3 我是商家
+        %p= link_to t("menu.Login"), 
+              new_user_session_path(role: :enterprise), 
+              class: "btn btn-large"
+        %p= link_to t("menu.Try"), 
+              new_user_registration_path(role: :enterprise), 
+              class: "btn btn-large"
+    
+      

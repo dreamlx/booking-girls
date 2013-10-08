@@ -13,16 +13,15 @@ zh-CN:
     Register: 注册
     Login: 登录
     Logout: 注销
+    Try: 试用
     Discover: 分类浏览
     "Your Account": "个人中心"
     Profile: 我的账号
   views:
+    cosumer: 客户
+    enterprise: 企业
     back: 返回
     new: 完成
-    new_product: 完成上传
-    edit_product: 更新3d模型
-    product_title: 我的模型库
-    designer: "设计师: %{designer_name}" 
     favor: "喜欢(%{favor})"
     price: "价格: %{price}"
     comment: "评论(%{comment})"

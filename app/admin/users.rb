@@ -4,7 +4,7 @@ ActiveAdmin.register User do
     column :id
     column :name
     column :email
-    column :admin
+    column :rold
     column :company
     actions
   end
@@ -16,7 +16,7 @@ ActiveAdmin.register User do
       f.input :password
       f.input :password_confirmation
       f.input :company
-      f.input :admin
+      f.input :role
     end
     
     f.actions

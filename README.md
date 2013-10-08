@@ -1,5 +1,9 @@
+#todo
+把所有.admin 变成role方式处理,需要结合cancan
+
 # todo
 support progressbar for uploading
+
 
 重构预订逻辑：
 1. admin可以创建可预订资源（人、桌子）
