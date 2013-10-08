@@ -13,10 +13,10 @@ class Ability
 
        if user.role == 'enterprise'
         can :manage, Company, user_id: user.id
-        can :manage, Venue, company_id: user.company.id
-        can :manage, ServiceMenu, company_id: user.company.id
-        can :manage, Technician
-        can :manage, Task
+        can :manage, Venue, company_id: user.company.id unless user.company.blank?
+        can :manage, ServiceMenu, company_id: user.company.id unless user.company.venues.blank?
+        can :manage, Technician  unless user.company.service_menus.blank?
+        can :manage, Task unless user.company.technicians.blank?
        end
 
     #
