@@ -3,25 +3,23 @@
     .container
       %ul{:class => "nav", role: "navigation"}                
         - if user_signed_in?
-          %li 
-            = link_to "用户中心", edit_user_registration_path 
-          %li
-            = link_to "按技师", technicians_home_index_path if @current_company and @current_company.technicians
-          %li
-            = link_to "按门店", venues_home_index_path if @current_company and @current_company.technicians
-          %li
-            = link_to "按服务", services_home_index_path if @current_company and @current_company.technicians
-          - if current_user.role == 'admin'
-            %li
-              = link_to '技师资料', technicians_path if !@current_company.nil? and !@current_company.venues.blank?
-            %li
-              = link_to '店铺信息', venues_path unless current_user.company.blank?
-            %li
-              = link_to '服务列表', service_menus_path  unless current_user.company.blank?
-            %li
-              = link_to '上钟统计', tasks_path unless current_user.technicians.blank?
+          - if !current_user.company.technicians.blank?
+            %li= link_to "按技师", technicians_home_index_path if can? :read, Technician
+            %li= link_to "按门店", venues_home_index_path if can? :read, Venue
+            %li= link_to "按服务", services_home_index_path if can? :read, ServiceMenu
+          - if can? :manage, Company
             %li
               = link_to '公司信息', current_user.company.blank? ? new_company_path : company_path(current_user.company)
+            %li
+              = link_to '店铺信息', venues_path if can?(:manage, Venue) and !current_user.company.blank?
+            %li
+              = link_to '服务列表', service_menus_path  if can?(:manage, ServiceMenu) and !current_user.company.venues.blank? 
+            %li
+              = link_to '技师资料', technicians_path if can?(:manage, Technician) and !current_user.company.service_menus.blank?
+            %li
+              = link_to '上钟统计', tasks_path if can?(:manage, Task) and !current_user.company.technicians.blank?
+          %li 
+            = link_to "用户中心", edit_user_registration_path 
           %li
             =  link_to t("menu.Logout"), destroy_user_session_path, :method => :delete
         
