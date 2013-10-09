@@ -1,5 +1,11 @@
 .container
   - if user_signed_in?
+    - if current_user.role == 'enterprise'
+      %ol
+        %li 设置企业信息
+        %li 设置菜品分类
+        %li 设置菜品条目
+        %li 发布
     .row
       - if can? :read, Venue
         .span5
@@ -31,10 +37,10 @@
       .span5
         %h3 我是商家
         %p= link_to t("menu.Login"), 
-              new_user_session_path(role: :enterprise), 
+              new_admin_user_session_path(role: :enterprise), 
               class: "btn btn-large"
         %p= link_to t("menu.Try"), 
-              new_user_registration_path(role: :enterprise), 
+              new_admin_user_path(role: :enterprise), 
               class: "btn btn-large"
     
       

@@ -1,0 +1,4 @@
+zh-CN:  
+  active_admin:
+    access_denied:
+      message: 权限不足，拒绝访问

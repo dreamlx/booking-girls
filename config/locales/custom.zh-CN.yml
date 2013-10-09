@@ -51,12 +51,20 @@ zh-CN:
       technician: 技师
       service_menu: 服务项目
       company: 企业
+      admin_user: 管理员
     attributes:
       company:
         name: 企业名称
         address: 企业地址
         phone: 联系电话
       user:
+        email: 邮箱
+        password: 密码
+        password_confirmation: 重复密码
+        current_password: 当前密码
+        remember_me: 记住我
+        name: 昵称
+      admin_user:
         email: 邮箱
         password: 密码
         password_confirmation: 重复密码

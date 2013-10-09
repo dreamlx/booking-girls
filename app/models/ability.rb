@@ -5,18 +5,18 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
        user ||= User.new # guest user (not logged in)
+       can :read, ActiveAdmin::Page, :name => "Dashboard"
+       can :manage, [AdminUser], id: user.id
        if user.role == 'admin'
          can :manage, :all
-       else
-         can :read, :all
        end
 
        if user.role == 'enterprise'
-        can :manage, Company, user_id: user.id
-        can :manage, Venue, company_id: user.company.id unless user.company.blank?
-        can :manage, ServiceMenu, company_id: user.company.id unless user.company.venues.blank?
-        can :manage, Technician  unless user.company.service_menus.blank?
-        can :manage, Task unless user.company.technicians.blank?
+        can :manage, Company
+        #can :manage, Venue, company_id: user.company.id unless user.company.blank?
+        #can :manage, ServiceMenu, company_id: user.company.id unless user.company.blank?
+        #can :manage, Technician  unless user.company.service_menus.blank?
+        #can :manage, Task unless user.company.technicians.blank?
        end
 
     #

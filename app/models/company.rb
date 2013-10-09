@@ -2,6 +2,7 @@ class Company < ActiveRecord::Base
  	mount_uploader :avatar, AvatarUploader
   attr_accessible :address, :name, :phone, :avatar
   has_many :users
+  has_one :admin_user
   
   has_many :venues
   has_many :service_menus

@@ -1,3 +1,4 @@
+# coding: utf-8
 ActiveAdmin.register_page "Dashboard" do
 
   menu :priority => 1, :label => proc{ I18n.t("active_admin.dashboard") }
@@ -5,8 +6,14 @@ ActiveAdmin.register_page "Dashboard" do
   content :title => proc{ I18n.t("active_admin.dashboard") } do
     div :class => "blank_slate_container", :id => "dashboard_default_message" do
       span :class => "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+        h1 '欢迎访问下单服务平台'
+        ol do
+          li '设置企业信息'
+          li '设置菜品分类'
+          li '设置菜品条目'
+          li '完成，前台查看一下吧'
+        end
+        
       end
     end
 

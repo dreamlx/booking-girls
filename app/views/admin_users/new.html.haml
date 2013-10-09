@@ -1,0 +1,13 @@
+%h2 申请企业试用
+= simple_form_for @admin_user do |f|
+  - @admin_user.errors.full_messages.each do |message|
+    %li= message
+  %div
+    = f.input :email, :autofocus => true
+  %div
+    = f.input :password
+  %div
+    = f.input :password_confirmation
+  %div
+    = f.hidden_field :role, :value => params[:role]
+  %div= f.button :submit

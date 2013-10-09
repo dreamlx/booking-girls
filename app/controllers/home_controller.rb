@@ -16,5 +16,5 @@ class HomeController < ApplicationController
   def technicians
     @technicians = @current_company.technicians.paginate(page: params[:page], per_page: 30)
   end
-  
+
 end

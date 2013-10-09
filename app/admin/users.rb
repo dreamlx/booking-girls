@@ -4,7 +4,7 @@ ActiveAdmin.register User do
     column :id
     column :name
     column :email
-    column :rold
+    column :role
     column :company
     actions
   end

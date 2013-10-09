@@ -14,8 +14,9 @@ ActiveAdmin.register AdminUser do
     f.inputs "Admin Details" do       
       f.input :email                  
       f.input :password               
-      f.input :password_confirmation  
+      f.input :password_confirmation 
+      #f.input :role, :as => :select,      :collection => AdminUser::ROLES
     end                               
     f.actions                         
   end                                 
-end                                   
+end 

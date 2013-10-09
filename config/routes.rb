@@ -8,6 +8,8 @@ Tzk3d::Application.routes.draw do
 
   resources :technicians
 
+  resources :admin_users
+
   resources :orders, only: [:index, :show, :create] do
     member do
       post 'pay'
