@@ -6,14 +6,19 @@ class Ability
     #
        user ||= User.new # guest user (not logged in)
        can :read, ActiveAdmin::Page, :name => "Dashboard"
-       can :manage, [AdminUser], id: user.id
+       
        if user.role == 'admin'
          can :manage, :all
        end
 
        if user.role == 'enterprise'
-        can :manage, Company
-        #can :manage, Venue, company_id: user.company.id unless user.company.blank?
+        can :manage, AdminUser, id: user.id
+        can :read, User, company_id: user.company.id unless user.company.blank? 
+        can :manage, Company, admin_user_id: user.id
+        can :manage, Venue, company_id: user.company.id unless user.company.blank?
+        can :manage, MenuItem
+        can :manage, MenuList
+        can :manage, Category
         #can :manage, ServiceMenu, company_id: user.company.id unless user.company.blank?
         #can :manage, Technician  unless user.company.service_menus.blank?
         #can :manage, Task unless user.company.technicians.blank?

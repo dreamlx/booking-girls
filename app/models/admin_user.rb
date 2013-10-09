@@ -10,5 +10,5 @@ class AdminUser < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role
   # attr_accessible :title, :body
 
-  belongs_to :company
+  has_one :company
 end

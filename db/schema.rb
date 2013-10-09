@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131009084905) do
+ActiveRecord::Schema.define(:version => 20131009111316) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -53,8 +53,9 @@ ActiveRecord::Schema.define(:version => 20131009084905) do
     t.integer  "lft"
     t.integer  "rgt"
     t.integer  "depth"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "admin_user_id"
   end
 
   create_table "comments", :force => true do |t|
@@ -108,6 +109,28 @@ ActiveRecord::Schema.define(:version => 20131009084905) do
     t.string   "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "menu_items", :force => true do |t|
+    t.string   "title"
+    t.string   "avatar"
+    t.decimal  "price"
+    t.text     "desc"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "menu_list_id"
+    t.integer  "category_id"
+    t.integer  "admin_user_id"
+  end
+
+  create_table "menu_lists", :force => true do |t|
+    t.string   "title"
+    t.text     "desc"
+    t.integer  "company_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "state"
+    t.integer  "admin_user_id"
   end
 
   create_table "model3ds", :force => true do |t|

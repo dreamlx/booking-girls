@@ -6,7 +6,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+AdminUser.destory_all
 AdminUser.create!(:email => 'admin@gmail.com', :password => '11111111', :password_confirmation => '11111111', :role => 'admin')
-User.create!(:email => 'admin@admin.com', :password => '11111111', :password_confirmation => '11111111')
+
+Category.create!(name: '汤')
+Category.create!(name: '甜品')
+Category.create!(name: '主食')
+Category.create!(name: '海鲜')
+Category.create!(name: '牛羊肉')
+Category.create!(name: '猪肉荤腥')
+
+User.destory_all
 Dict.create!(:title => "上钟时间", :category => "workhours", :value=> "90")
  
