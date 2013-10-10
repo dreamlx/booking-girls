@@ -53,6 +53,7 @@ zh-CN:
       company: 企业
       admin_user: 管理员
       category: 菜单分类
+      menu_item: 菜单项目
     attributes:
       company:
         name: 企业名称
@@ -102,6 +103,13 @@ zh-CN:
         service_menus: 服务项目
       category:
         name: 分类名称
+      menu_item:
+        category: 分类名称
+        avatar: 美食照片
+        title: 美食名称
+        price: 单位价格
+        desc: 更多说明
+
   errors:
     messages:
       carrierwave_processing_error: "Cannot resize image."

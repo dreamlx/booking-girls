@@ -17,7 +17,7 @@ class Ability
         can :manage, Company, admin_user_id: user.id
         can :manage, Venue, company_id: user.company.id unless user.company.blank?
         can :manage, MenuItem
-        can :manage, MenuList
+        #can :manage, MenuList
         can :manage, Category
         #can :manage, ServiceMenu, company_id: user.company.id unless user.company.blank?
         #can :manage, Technician  unless user.company.service_menus.blank?
