@@ -14,6 +14,7 @@ ActiveAdmin.register MenuItem do
 
   form do |f|
     f.inputs do
+      f.input :admin_user_id, as: :hidden, input_html: { value: current_admin_user.id }
       f.input :title
       f.input :category
       f.input :price

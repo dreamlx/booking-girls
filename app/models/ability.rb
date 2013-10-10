@@ -15,10 +15,10 @@ class Ability
         can :manage, AdminUser, id: user.id
         can :read, User, company_id: user.company.id unless user.company.blank? 
         can :manage, Company, admin_user_id: user.id
-        can :manage, Venue, company_id: user.company.id unless user.company.blank?
-        can :manage, MenuItem
+        #can :manage, Venue, company_id: user.company.id unless user.company.blank?
+        can :manage, MenuItem, admin_user_id: user.id
         #can :manage, MenuList
-        can :manage, Category
+        can :manage, Category, admin_user_id: user.id
         #can :manage, ServiceMenu, company_id: user.company.id unless user.company.blank?
         #can :manage, Technician  unless user.company.service_menus.blank?
         #can :manage, Task unless user.company.technicians.blank?
