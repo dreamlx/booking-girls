@@ -16,4 +16,6 @@ class Company < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :admin_user_id
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 end

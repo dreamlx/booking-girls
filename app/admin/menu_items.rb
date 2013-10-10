@@ -16,7 +16,7 @@ ActiveAdmin.register MenuItem do
     f.inputs do
       f.input :admin_user_id, as: :hidden, input_html: { value: current_admin_user.id }
       f.input :title
-      f.input :category
+      f.input :category_id, as: :select, :collection => Category.where("admin_user_id = #{current_admin_user.id}")
       f.input :price
       f.input :desc
       f.input :avatar, as: :file

@@ -1,5 +1,8 @@
 class CompaniesController < InheritedResources::Base
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
+  def show
+    @company = Company.friendly_id.find(params[:id])
+  end
   def create
     @company = Company.new(params[:company])
     if @company.save

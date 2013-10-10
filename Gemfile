@@ -14,6 +14,7 @@ gem 'useragent'
 gem 'gon'
 gem 'by_star', :git => "git://github.com/radar/by_star"
 gem 'carrierwave-qiniu'
+gem 'friendly_id'
 #i18n
 gem 'rails-i18n'
 gem 'devise-i18n-views'
