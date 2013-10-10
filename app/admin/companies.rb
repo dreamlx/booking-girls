@@ -1,5 +1,5 @@
 ActiveAdmin.register Company do
-  actions :all, :except => [:new]
+  actions :all
   form do |f|
     f.inputs do
       f.input :admin_user_id, as: :hidden, input_html: { value: current_admin_user.id }
