@@ -15,7 +15,11 @@ ActiveAdmin.register_page "Dashboard" do
           end
           li link_to '设置菜品分类', new_admin_category_path
           li link_to '设置菜品条目', new_admin_menu_item_path
-          li '完成，前台查看一下吧'
+          if current_admin_user.company.blank?
+            li '完成，前台查看一下吧'
+          else  
+            li link_to '完成，前台查看一下吧', company_path(current_admin_user.company.name)
+          end
         end
         
       end

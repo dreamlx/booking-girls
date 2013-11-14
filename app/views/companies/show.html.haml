@@ -3,19 +3,25 @@
   %b 公司名称:
   = @company.name
 %p
+  %b 图片:
+  %p= image_tag @company.avatar.url unless @company.avatar.url.nil?
+%p
   %b 公司地址:
   = @company.address
 %p
   %b 联系电话:
   = @company.phone
-%p
-  %b 首页图片:
-  %p= image_tag @company.avatar.url unless @company.avatar.url.nil?
-%p
-  %b 用户帐号管理:
-  %p= link_to "创建用户",new_user_registration_path, class: "btn"
-  %ul
-    - @company.users.each  do |user| 
-      %li= user.email
-= link_to '编辑', edit_company_path(@company), class: "btn"
+%p 
+  %b简介:
+  = @company.desc
+
+%hr
+%ul
+  - @company.admin_user.categories.each do |c|
+    %li 
+      = c.name  
+      %ul
+        - c.menu_items.each do |item|
+          %li 
+            = item.title
 

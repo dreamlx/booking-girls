@@ -1,0 +1,85 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input {margin:0;padding:0;border:0;outline:0;font-size:100%;}
+img {border:none;}
+table {border-collapse:collapse;border-spacing: 0;}
+q:before, q:after, blockquote:before, blockquote:after {content: "";}
+ol, ul {list-style:none;}
+
+body, html {width:100%; height:100%;}
+body {background:#e67e22 url(images/bg.jpg) left center no-repeat; font:16px/1.5 "Hiragino Sans GB","Microsoft Yahei",Helvetica,Arial,sans-serif;}
+.icon-u, .u-s-x, .m-p, .m-n, .st, .vo, .selected, .selected span, .sicon, .go {background-image:url(images/icons.png); background-repeat:no-repeat;}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), 
+only screen and (min-device-pixel-ratio: 2) {
+    .icon-u, .u-s-x, .m-p, .m-n, .st, .vo, .selected, .selected span, .sicon, .go {background-image:url(images/icons@2x.png); background-repeat:no-repeat; background-size:200px 500px;}
+}
+
+#hd, #bd, #menu, #ft {position:fixed;}
+#hd {top:8px; left:28px; height:40px; z-index:2;}
+.user {width:275px; height:40px; float:left; margin-right:50px;}
+.icon-u {display:block; float:left; width:40px; height:40px;}
+.u-s {width:232px; height:40px; float:right;}
+.u-s-t {float:left; width:190px; height:40px; background:#d35400; border-top-left-radius:5px; border-bottom-left-radius:5px; border-right:1px solid #b44700; position:relative; z-index:3;}
+.u-s-t span {display:block; line-height:40px; padding:0 12px; color:white; font-size:16px;}
+.u-s-t ul {position:absolute; top:30px; left:0; width:170px; border-bottom-left-radius:5px; border-bottom-right-radius:5px; background:#d35400; padding:10px; display:none;}
+.u-s-t li {line-height:36px; color:#f2d6cb;}
+.u-s-x {width:40px; height:40px; float:right; background-color:#ffb370; border-top-right-radius:5px; border-bottom-right-radius:5px; border-left:1px solid #d9985f; background-position:0 -318px;}
+.people, .desk {float:left; height:40px; line-height:40px; border-radius:5px; background:#d35400; padding:0 20px; margin-right:20px; display:none;}
+.people span, .desk span {color:white;}
+.go {float:left; height:40px; line-height:40px; border-radius:5px; background-color:#d35400; padding:0 20px 0 50px; margin-right:20px; color:white; background-position:-35px -317px;}
+#bd {top:150px; left:62px; width:580px; height:750px; z-index:1; overflow-y:auto; overflow-x:hidden;}
+.logo {width:276px; height:301px; background:url(images/logo.png) no-repeat; margin:auto; margin-top:200px;}
+.recipes {display:none;}
+.recipes li {margin-bottom:58px; overflow:hidden; position:relative;}
+.rimg {width:334px; height:334px; position:relative; float:left; overflow:hidden;}
+.rimg img {width:100%; height:100%;}
+.rok {position:absolute; top:0; left:0; width:314px; height:314px; border:10px solid #e67e22; display:none;}
+.rok span {display:block; float:right; width:50px; padding-left:10px; height:60px; background:#e67e22; text-align:center; line-height:60px; font-size:40px; font-weight:bold; color:white; margin-top:254px;}
+.rinfo {margin-left:354px;}
+.rinfo h3 {font-size:30px; line-height:40px; margin-bottom:10px;}
+.rinfo p {margin-bottom:10px;}
+.rprice {position:absolute; bottom:0; left:354px; font-size:24px; font-weight:bold; color:#d35400;}
+#menu {top:64px; right:8px; width:50px; height:740px; z-index:1;}
+#menu ul {background:#d7dcde; height:618px; padding:10px 0; overflow-x:hidden; overflow-y:auto;}
+#menu li {width:36px; text-align:center; padding:20px 0; margin:auto; margin-bottom:10px;}
+#menu .cur {background:#bdc3c7; border-radius:20px;}
+.m-p, .m-n {display:block; width:50px; height:50px; background-color:#d7dcde;}
+.m-p {background-position:5px -154px; border-top-left-radius:5px; border-top-right-radius:5px; border-bottom:2px solid #7e8081;}
+.m-n {background-position:5px -194px; border-bottom-right-radius:5px; border-bottom-left-radius:5px; border-top:2px solid #7e8081;}
+#ft {bottom:0; left:70px; width:670px; height:50px; z-index:3;}
+.selected {position:absolute; right:-25px; top:-80px; width:110px; height:110px; background-position:-1px -350px;}
+.selected span {display:block; width:57px; padding-left:4px; height:61px; line-height:61px; text-align:center; color:white; font-size:24px; font-weight:bold; background-position:-128px -362px; float:right;}
+.st, .vo {background-color:#d35400; border-radius:5px; width:100px; height:40px; margin-right:20px; display:inline-block;}
+.st {background-position:30px -40px;}
+.vo {background-position:30px -80px;}
+.vo.no {background-position:30px -120px;}
+
+.pop {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9; display:none;}
+.start {width:490px; margin:auto; margin-top:300px; position:relative;}
+.welcome {color:white; line-height:20px; float:left; margin-top:30px;}
+.welcome span {display:block; font-size:24px;}
+.sform {background:#ecf0f1; border-radius:8px; margin-left:120px; padding:30px;}
+.sform:after {
+    position: absolute;
+    top:37px;
+    left:90px;
+    display: inline-block;
+    border-right: 15px solid #ecf0f1;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid transparent;
+    content: '';
+}
+.sinput {height:45px; width:100%; margin-bottom:15px;}
+.sinput label {width:55px; height:45px; line-height:45px; float:left;}
+.speople {background:#1abc9c; border-radius:5px; width:200px; height:45px; float:left;}
+.speople input {float:left; width:100px; border-radius:3px; background:#FFF; border:none; font-size:24px; text-align:center; height:41px; margin-top:2px;}
+.sp-x, .sp-j {width:50px; height:45px; display:block; line-height:40px; text-align:center; font-size:30px;}
+.sp-x {float:left;}
+.sp-j {float:right;}
+.sdesk {border:2px solid #1abc9c; border-radius:5px; background:#FFF; width:196px; height:41px; line-height:41px; text-align:center; font-size:24px;}
+.sicon {display:block; float:right; width:45px; height:45px;}
+.icon-p {background-position:2px -238px;}
+.icon-d {background-position:2px -278px;}
+.sbutton {overflow:hidden; width:292px;}
+.sbutton button {background:#1abc9c; border-radius:5px; font-size:18px; color:white; text-align:center; height:45px; line-height:45px; width:135px; border:none;}
+.cancel {float:left;}
+.ok {float:right;}

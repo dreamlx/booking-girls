@@ -24,23 +24,12 @@
   - else
     .hero-unit
       %h1 欢迎访问下单服务平台
-      .hero= h "测试帐号：test@zjt.com, 密码：11111111"
-    .row
-      .span5.offset2
-        %h3 我是客户 
-        %p= link_to t("menu.Login"), 
-              new_user_session_path(role: :cosumer), 
-              class: "btn btn-large"
-        %p= link_to t("menu.Try"), 
-              new_user_registration_path(role: :cosumer), 
-              class: "btn btn-large"
-      .span5
-        %h3 我是商家
-        %p= link_to t("menu.Login"), 
-              new_admin_user_session_path(role: :enterprise), 
-              class: "btn btn-large"
-        %p= link_to t("menu.Try"), 
-              new_admin_user_path(role: :enterprise), 
-              class: "btn btn-large"
-    
+      .hero=# h "测试帐号：test@zjt.com, 密码：11111111"
+      %p= link_to t("menu.Login"), 
+            new_admin_user_session_path(role: :enterprise), 
+            class: "btn btn-large"
+      %p= link_to t("menu.Register"), 
+            new_admin_user_path(role: :enterprise), 
+            class: "btn btn-large"
+  
       

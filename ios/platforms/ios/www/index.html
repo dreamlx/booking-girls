@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>e-Order</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+<div class="pop">
+    <div class="start">
+        <div class="welcome">Welcome to<span>e-Order</span></div>
+        <div class="sform">
+            <div class="sinput">
+                <label>人数</label>
+                <div class="speople">
+                    <span class="sp-x">-</span>
+                    <input type="text" value="3" />
+                    <span class="sp-j">+</span>
+                </div>
+                <div class="sicon icon-p"></div>
+            </div>
+            <div class="sinput">
+                <label>桌号</label>
+                <input type="number" class="sdesk" value="18" />
+                <div class="sicon icon-d"></div>
+            </div>
+            <div class="sbutton">
+                <button class="cancel">取消</button>
+                <button class="ok">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <header id="hd">
+        <div class="user">
+            <span class="icon-u"></span>
+            <div class="u-s">
+                <div class="u-s-t">
+                    <span>工号3986</span>
+                    <ul>
+                        <li>工号9271</li>
+                        <li>工号9272</li>
+                        <li>工号9273</li>
+                        <li>工号9274</li>
+                    </ul>
+                </div>
+                <div class="u-s-x"></div>
+            </div>
+        </div>
+        <div class="go">开台</div>
+        <div class="people">人数 <span>2</span></div>
+        <div class="desk">桌号 <span>18</span></div>
+    </header>
+    <div id="bd">
+        <div class="logo"></div>
+        <ul class="recipes">
+            <li>
+                <div class="rimg">
+                    <div class="rok">
+                        <span>+</span>
+                    </div>
+                    <img src="images/recipe.jpg" />
+                </div>
+                <div class="rinfo">
+                    <h3>异域风情牛排</h3>
+                    <p>ws023</p>
+                    <p>
+                        牛排300g<br />西配菜100g<br />芝士饼200g
+                    </p>
+                </div>
+                <div class="rprice">￥159</div>
+            </li>
+            <li>
+                <div class="rimg">
+                    <div class="rok">
+                        <span>+</span>
+                    </div>
+                    <img src="images/recipe.jpg" />
+                </div>
+                <div class="rinfo">
+                    <h3>异域风情牛排</h3>
+                    <p>ws023</p>
+                    <p>
+                        牛排300g<br />西配菜100g<br />芝士饼200g
+                    </p>
+                </div>
+                <div class="rprice">￥159</div>
+            </li>
+            <li>
+                <div class="rimg">
+                    <div class="rok">
+                        <span>+</span>
+                    </div>
+                    <img src="images/recipe.jpg" />
+                </div>
+                <div class="rinfo">
+                    <h3>异域风情牛排</h3>
+                    <p>ws023</p>
+                    <p>
+                        牛排300g<br />西配菜100g<br />芝士饼200g
+                    </p>
+                </div>
+                <div class="rprice">￥159</div>
+            </li>
+        </ul>
+    </div>
+    <nav id="menu">
+        <span class="m-p"></span>
+        <ul>
+            <li class="cur">首<br />页</li>
+            <li>西<br />餐</li>
+            <li>东<br />南<br />亚</li>
+            <li>日<br />韩</li>
+            <li>港<br />式</li>
+        </ul>
+        <span class="m-n"></span>
+    </nav>
+    <footer id="ft">
+        <div class="selected">
+            <span>0</span>
+        </div>
+        <span class="st"></span>
+        <span class="vo"></span>
+    </footer>
+<script src="js/zepto.min.js"></script>
+<script src="js/eorder.js"></script>
+</body>
+</html>

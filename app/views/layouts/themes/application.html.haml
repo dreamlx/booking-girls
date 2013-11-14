@@ -1,0 +1,26 @@
+!!! 5
+%html
+  %head        
+    = stylesheet_link_tag    "themes/style.css", :media => "all" 
+    = javascript_include_tag "themes/zepto.min.js" 
+    = javascript_include_tag "themes/eorder.js"
+    = csrf_meta_tags 
+    = include_gon
+    %meta{content: "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no", name: 'viewport'} 
+    
+  %body
+    #alert-bar.navbar.navbar-static-top
+      - unless notice.nil?      
+        .alert.alert-block= notice
+      -unless alert.nil?
+        .alert.alert-error= alert
+
+    .container-fluid
+      %section.top-menu
+        %a.brand{href: root_path}
+          = image_tag "logo-icon.png", size: '64x64'
+          下单服务聚合
+      %header#header
+        = render "layouts/header"
+      #content= yield
+    %a#toTop{ href: '#top'}

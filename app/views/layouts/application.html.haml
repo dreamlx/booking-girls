@@ -16,10 +16,10 @@
       -unless alert.nil?
         .alert.alert-error= alert
 
-    .container.wap
+    .container-fluid
       %section.top-menu
         %a.brand{href: root_path}
-          = image_tag "logo-icon.png", height: '64', width: '64'
+          = image_tag "logo-icon.png", size: '64x64'
           下单服务聚合
       %header#header
         = render "layouts/header"

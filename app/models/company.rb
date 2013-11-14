@@ -1,6 +1,12 @@
 class Company < ActiveRecord::Base
  	mount_uploader :avatar, AvatarUploader
-  attr_accessible :address, :name, :phone, :avatar, :admin_user_id, :pics_attributes
+  attr_accessible :address, 
+                  :name, 
+                  :phone, 
+                  :avatar, 
+                  :desc,
+                  :admin_user_id, 
+                  :pics_attributes
   
   belongs_to :admin_user
   
