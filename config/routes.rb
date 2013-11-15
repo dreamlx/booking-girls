@@ -58,4 +58,10 @@ Tzk3d::Application.routes.draw do
       get :technicians
     end
   end
+
+  namespace :api do
+    resources :categories
+    resources :menu_items
+    resources :waiters
+  end
 end

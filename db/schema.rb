@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131010095835) do
+ActiveRecord::Schema.define(:version => 20131115133029) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -144,6 +144,13 @@ ActiveRecord::Schema.define(:version => 20131010095835) do
     t.datetime "updated_at",    :null => false
     t.string   "state"
     t.integer  "admin_user_id"
+  end
+
+  create_table "menu_orders", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "desk"
+    t.integer  "customers"
+    t.datetime "created_at"
   end
 
   create_table "model3ds", :force => true do |t|
@@ -307,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20131010095835) do
     t.string   "last_sign_in_ip"
     t.integer  "company_id"
     t.string   "role"
+    t.string   "code"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

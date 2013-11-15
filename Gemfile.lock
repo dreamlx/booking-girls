@@ -246,6 +246,7 @@ GEM
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     nokogiri (1.5.9)
+    oj (2.2.0)
     orm_adapter (0.4.0)
     pg (0.15.1)
     polyamorous (0.5.0)
@@ -264,6 +265,8 @@ GEM
       ruby-hmac (~> 0.4)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
+    rabl (0.8.6)
+      activesupport (>= 2.3.14)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -413,10 +416,12 @@ DEPENDENCIES
   letter_opener (~> 1.1.0)
   mysql2
   nested_form
+  oj
   pg
   pry-rails
   qiniu-rs
   quiet_assets (~> 1.0.1)
+  rabl
   rack-livereload
   rails (= 3.2.12)
   rails-footnotes (>= 3.7.9)
