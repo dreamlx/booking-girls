@@ -1,1 +1,1 @@
-attributes :id, :title, :price, :desc
+attributes :id, :title, :price, :desc, :avatar_url

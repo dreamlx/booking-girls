@@ -63,5 +63,6 @@ Tzk3d::Application.routes.draw do
     resources :categories
     resources :menu_items
     resources :waiters
+    resources :menu_orders
   end
 end

@@ -1,2 +1,2 @@
-object @waiter
+object @waiter 
 extends '/api/waiters/item'
