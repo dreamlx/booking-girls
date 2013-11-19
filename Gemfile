@@ -14,7 +14,8 @@ gem 'useragent'
 gem 'gon'
 gem 'by_star', :git => "git://github.com/radar/by_star"
 gem 'carrierwave-qiniu'
-gem 'friendly_id'
+gem "friendly_id", "~> 4.0.10" # Note: You MUST use 4.0.9 or greater for Rails 3.2.10+
+
 #i18n
 gem 'rails-i18n'
 gem 'devise-i18n-views'
