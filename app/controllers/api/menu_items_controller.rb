@@ -1,7 +1,11 @@
 module Api
   class MenuItemsController < Api::BaseController
     def index
-      @menu_items = MenuItem.where("category_id = #{params[:category_id]}")
+      if params[:category_id].blank?
+        @menu_items = MenuItem.all
+      else
+        @menu_items = MenuItem.where("category_id = #{params[:category_id]}")
+      end
     end
 
     def show

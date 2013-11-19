@@ -1,6 +1,13 @@
 #todo
 把所有.admin 变成role方式处理,需要结合cancan
 
+改为超级简化版本
+
+1 申请阿里云数据库
+2 改变本地deploy文件
+3 dump最新数据库结构
+4 修改域名
+
 # todo
 support progressbar for uploading
 
