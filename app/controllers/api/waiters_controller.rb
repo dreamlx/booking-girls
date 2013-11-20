@@ -1,7 +1,7 @@
 module Api
   class WaitersController < Api::BaseController
     def index
-      @waiters = User.all
+      @waiters = User.where(role: 'waiter')
     end
     
     def show

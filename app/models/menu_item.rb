@@ -11,4 +11,7 @@ class MenuItem < ActiveRecord::Base
   belongs_to :menu_list
   belongs_to :category
 
+  has_many :menu_order_menu_itemships
+  has_many :menu_orders, :through => :menu_order_menu_itemships
+
 end

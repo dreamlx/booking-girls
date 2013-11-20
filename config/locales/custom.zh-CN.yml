@@ -54,7 +54,11 @@ zh-CN:
       admin_user: 管理员
       category: 菜单分类
       menu_item: 菜单项目
+      menu_order: 客户下单
     attributes:
+      menu_order:
+        customers: 就餐人数
+        desk: 桌号
       company:
         name: 企业名称
         address: 企业地址
