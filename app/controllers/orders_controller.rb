@@ -1,4 +1,4 @@
-
+# coding: utf-8
 class OrdersController < ApplicationController
   def index
     @orders = Order.all

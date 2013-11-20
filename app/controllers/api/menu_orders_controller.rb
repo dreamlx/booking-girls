@@ -1,4 +1,4 @@
-# coding:utf-8
+# coding: utf-8
 module Api
   class MenuOrdersController < Api::BaseController
     skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
