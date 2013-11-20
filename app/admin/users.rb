@@ -1,9 +1,8 @@
-ActiveAdmin.register User do
+ActiveAdmin.register AdminUser do
   
   index do
     column :id
     column :role
-    column :name
     column :email
     column :role
     column :company
@@ -12,7 +11,6 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs "detail" do
-      f.input :name
       f.input :email
       f.input :password
       f.input :password_confirmation

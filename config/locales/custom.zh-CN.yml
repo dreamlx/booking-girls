@@ -48,12 +48,12 @@ zh-CN:
       user: 用户
       product: 模型
       comment: 评论 
-      technician: 技师
+      technician: 员工
       service_menu: 服务项目
       company: 企业
       admin_user: 管理员
       category: 菜单分类
-      menu_item: 菜单项目
+      menu_item: 菜品名称
       menu_order: 客户下单
     attributes:
       menu_order:
@@ -63,6 +63,7 @@ zh-CN:
         name: 企业名称
         address: 企业地址
         phone: 联系电话
+        avatar: 企业照片
       user:
         email: 邮箱
         password: 密码
@@ -91,7 +92,7 @@ zh-CN:
         photo: 图片
         title: 标题
       technician:
-        name: 技师姓名
+        name: 姓名
         age: 年龄
         price: 价格
         desc: 个人说明

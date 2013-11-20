@@ -2,9 +2,7 @@ Tzk3d::Application.routes.draw do
 
   resources :menu_lists
 
-
   resources :menu_items
-
 
   resources :companies
 

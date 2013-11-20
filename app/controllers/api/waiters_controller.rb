@@ -1,11 +1,11 @@
 module Api
   class WaitersController < Api::BaseController
     def index
-      @waiters = User.where(role: 'waiter')
+      @waiters = Technician.where(role: 'waiter')
     end
     
     def show
-      @waiters = User.find params[:id]
+      @waiters = Technician.find params[:id]
     end
   end
 end

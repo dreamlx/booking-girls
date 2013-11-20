@@ -1,7 +1,7 @@
 module Api
   class CategoriesController < Api::BaseController
     def index
-      @categories = Category.all
+      @categories = Category.order("created_at DESC")
     end
 
     def show
